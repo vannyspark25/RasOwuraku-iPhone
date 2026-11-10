@@ -1,0 +1,920 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<meta name="description" content="Buy, sell and swap iPhones at RasOwuraku iPhones. Book an appointment for iPhone valuation, upgrades and purchases at Adum PZ, Pat Thomas Building, 2nd Floor.">
+
+<meta name="theme-color" content="#101820">
+
+<title>Buy & Swap | RasOwuraku iPhones</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* GENERAL */
+
+.swap-intro {
+    padding: 65px 20px 35px;
+    text-align: center;
+}
+
+.swap-tag {
+    color: #d4a937;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.swap-intro h1 {
+    font-size: clamp(35px, 6vw, 58px);
+    line-height: 1.1;
+    margin: 15px 0;
+    color: #fff;
+}
+
+.swap-intro h1 span {
+    color: #d4a937;
+}
+
+.swap-intro p {
+    max-width: 650px;
+    margin: auto;
+    color: #aeb9c0;
+    line-height: 1.8;
+}
+
+/* BENEFITS */
+
+.swap-benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 30px auto 65px;
+}
+
+.benefit {
+    background: #17252d;
+    padding: 25px 18px;
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+}
+
+.benefit-icon {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.benefit h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.benefit p {
+    font-size: 13px;
+    color: #aeb9c0;
+    line-height: 1.6;
+}
+
+/* SECTION HEADINGS */
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-heading h2 {
+    color: white;
+    font-size: clamp(27px, 4vw, 38px);
+    margin: 10px 0;
+}
+
+.section-heading p {
+    color: #aeb9c0;
+    line-height: 1.7;
+}
+
+/* SWAP AREA */
+
+.swap-area {
+    padding: 65px 20px;
+    background: #111b22;
+}
+
+.swap-panel {
+    max-width: 950px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.swap-info {
+    color: white;
+    padding: 25px;
+}
+
+.swap-info h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.swap-info p {
+    color: #aeb9c0;
+    line-height: 1.8;
+}
+
+.swap-info ul {
+    padding-left: 20px;
+    color: #d4dce0;
+    line-height: 2.2;
+    margin-top: 20px;
+}
+
+.swap-form-card {
+    background: #1b2a33;
+    border: 1px solid rgba(255,255,255,.09);
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.swap-form-card h3 {
+    color: white;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.swap-form-card label,
+.booking-card label {
+    display: block;
+    color: #e5e9eb;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.swap-form-card input,
+.swap-form-card select,
+.booking-card input,
+.booking-card select,
+.booking-card textarea {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px 14px;
+    border: 1px solid #394b55;
+    border-radius: 10px;
+    background: #101b22;
+    color: white;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.swap-form-card input:focus,
+.swap-form-card select:focus,
+.booking-card input:focus,
+.booking-card select:focus,
+.booking-card textarea:focus {
+    border-color: #d4a937;
+}
+
+.swap-form-card select option,
+.booking-card select option {
+    background: #17252d;
+    color: white;
+}
+
+.swap-form-card .row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.action-btn {
+    display: inline-block;
+    width: 100%;
+    border: none;
+    padding: 15px 20px;
+    background: linear-gradient(100deg, #d4a937, #f1bd43);
+    color: #101820;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(212,169,55,.2);
+}
+
+/* BOOKING SECTION */
+
+.booking-section {
+    padding: 80px 20px;
+    background: linear-gradient(140deg, #17252d, #101820);
+}
+
+.booking-container {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.booking-info {
+    color: white;
+}
+
+.booking-info h2 {
+    font-size: clamp(30px, 4vw, 42px);
+    line-height: 1.15;
+    margin: 15px 0;
+}
+
+.booking-info h2 span {
+    color: #d4a937;
+}
+
+.booking-info p {
+    color: #aeb9c0;
+    line-height: 1.8;
+}
+
+.booking-details {
+    margin-top: 28px;
+}
+
+.booking-detail {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin: 20px 0;
+    color: #e3e9ec;
+    font-size: 14px;
+}
+
+.booking-detail span {
+    font-size: 24px;
+}
+
+.booking-card {
+    background: #1b2a33;
+    padding: 32px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.09);
+}
+
+.booking-card h3 {
+    color: white;
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.booking-card .form-description {
+    color: #aeb9c0;
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 23px;
+}
+
+.booking-card .row2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.booking-card textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.booking-note {
+    text-align: center;
+    font-size: 11px;
+    color: #aeb9c0;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+/* HOW IT WORKS */
+
+.how-section {
+    padding: 70px 20px;
+    background: #101820;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 950px;
+    margin: auto;
+}
+
+.step {
+    padding: 25px;
+    background: #17252d;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.step-number {
+    color: #d4a937;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.step h3 {
+    color: white;
+    margin: 12px 0;
+}
+
+.step p {
+    color: #aeb9c0;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+/* MOBILE */
+
+@media(max-width: 700px) {
+
+    .swap-benefits,
+    .steps-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .swap-panel,
+    .booking-container {
+        grid-template-columns: 1fr;
+    }
+
+    .swap-info {
+        padding: 5px;
+    }
+
+    .swap-form-card,
+    .booking-card {
+        padding: 22px 17px;
+    }
+
+    .swap-form-card .row2,
+    .booking-card .row2 {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .swap-intro {
+        padding-top: 45px;
+    }
+
+    .booking-section,
+    .swap-area {
+        padding: 55px 15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- DECORATIVE STRIPE -->
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<linearGradient id="wp" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#d4a937"/>
+<stop offset=".5" stop-color="#d62d2d"/>
+<stop offset="1" stop-color="#0a9a4a"/>
+</linearGradient>
+
+<linearGradient id="gr" x1="0" y1="1" x2="0" y2="0">
+<stop offset="0" stop-color="#0a9a4a"/>
+<stop offset="1" stop-color="#d4a937"/>
+</linearGradient>
+</defs>
+</svg>
+
+<div class="stripe"></div>
+
+<!-- HEADER -->
+
+<header>
+<div class="wrap">
+
+<a class="logo" href="index.html">
+RasOwuraku <b>iPhones</b>
+</a>
+
+<nav aria-label="Main">
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="swap.html" aria-current="page">Buy &amp; swap</a>
+<a href="repair.html">Repairs</a>
+<a href="installments.html">Installments</a>
+<a href="contact.html">WhatsApp</a>
+<a href="admin.html">Admin</a>
+</nav>
+
+</div>
+</header>
+
+
+<main>
+
+<!-- INTRODUCTION -->
+
+<section class="swap-intro">
+
+<div class="wrap">
+
+<span class="swap-tag">RASOWURAKU IPHONES</span>
+
+<h1>
+Upgrade Your Phone.<br>
+<span>Upgrade Your Experience.</span>
+</h1>
+
+<p>
+Looking to own a new iPhone or exchange your current device?
+We make buying, selling and swapping iPhones simple and convenient.
+Get a valuation, explore your upgrade options and book a visit with us.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- BENEFITS -->
+
+<section>
+<div class="wrap">
+
+<div class="swap-benefits">
+
+<div class="benefit">
+<div class="benefit-icon">📱</div>
+<h3>Buy iPhones</h3>
+<p>Explore iPhone models and find the device that suits your needs.</p>
+</div>
+
+<div class="benefit">
+<div class="benefit-icon">🔄</div>
+<h3>Swap Your iPhone</h3>
+<p>Trade in your current iPhone and upgrade to another model.</p>
+</div>
+
+<div class="benefit">
+<div class="benefit-icon">💰</div>
+<h3>Get a Valuation</h3>
+<p>Tell us about your device and receive a valuation through WhatsApp.</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- BUY AND SWAP FORM -->
+
+<section class="swap-area" id="swap">
+
+<div class="swap-panel">
+
+<div class="swap-info">
+
+<span class="swap-tag">TRADE IN & UPGRADE</span>
+
+<h2>Give Your Old iPhone a New Beginning.</h2>
+
+<p>
+Want to upgrade? Share your current iPhone details
+and the model you want. Our team will review your
+information and contact you on WhatsApp.
+</p>
+
+<ul>
+<li>Quick device valuation</li>
+<li>Flexible upgrade options</li>
+<li>Convenient WhatsApp communication</li>
+<li>Personal customer assistance</li>
+</ul>
+
+</div>
+
+
+<div class="swap-form-card">
+
+<h3>Request a Swap Valuation</h3>
+
+<form id="swapForm">
+
+<div class="row2">
+
+<label>
+Your name
+<input name="name" placeholder="Enter your name" required>
+</label>
+
+<label>
+Phone number
+<input name="phone" type="tel" placeholder="Your phone number" required>
+</label>
+
+</div>
+
+<div class="row2">
+
+<label>
+Your current iPhone
+<input name="old" placeholder="iPhone 12, 128GB" required>
+</label>
+
+<label>
+Battery health (%)
+<input name="bat" type="number" min="0" max="100" placeholder="85">
+</label>
+
+</div>
+
+<label>
+Device condition
+
+<select name="cond" required>
+<option value="Like new">Like new</option>
+<option value="Good, small scratches">Good, small scratches</option>
+<option value="Cracked screen or back">Cracked screen or back</option>
+<option value="Not working">Not working</option>
+</select>
+</label>
+
+<label>
+Which iPhone would you like?
+<input name="want" placeholder="e.g. iPhone 15 Pro">
+</label>
+
+<button class="action-btn" type="submit">
+Get My Swap Valuation →
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BOOKING SECTION -->
+
+<section class="booking-section" id="booking">
+
+<div class="booking-container">
+
+<div class="booking-info">
+
+<span class="swap-tag">BOOK AN APPOINTMENT</span>
+
+<h2>
+Let's Get You Your <span>Dream iPhone.</span>
+</h2>
+
+<p>
+Planning to buy, sell, swap or repair an iPhone?
+Book an appointment with RasOwuraku iPhones.
+Choose a convenient date and time, then send your
+booking request directly to our WhatsApp team.
+</p>
+
+<div class="booking-details">
+
+<div class="booking-detail">
+<span>📍</span>
+<div>
+<strong>Visit our store</strong><br>
+ADUM PZ, Pat Thomas Building, 2nd Floor
+</div>
+</div>
+
+<div class="booking-detail">
+<span>📞</span>
+<div>
+<strong>Call or WhatsApp</strong><br>
++233 241719370
+</div>
+</div>
+
+<div class="booking-detail">
+<span>📅</span>
+<div>
+<strong>Flexible appointments</strong><br>
+Select your preferred date and time
+</div>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- BOOKING FORM -->
+
+<div class="booking-card">
+
+<h3>Book Your Appointment</h3>
+
+<p class="form-description">
+Complete the details below. Your booking request
+will be sent to our WhatsApp number.
+</p>
+
+<form id="bookingForm">
+
+<label>
+Full name
+<input type="text" name="name" placeholder="Your full name" required>
+</label>
+
+<label>
+Phone number
+<input type="tel" name="phone" placeholder="Your contact number" required>
+</label>
+
+<label>
+What service do you need?
+
+<select name="service" required>
+<option value="">Select a service</option>
+<option>Buy an iPhone</option>
+<option>Sell my iPhone</option>
+<option>Swap / Upgrade my iPhone</option>
+<option>iPhone Repair</option>
+<option>Installment Purchase</option>
+<option>General Consultation</option>
+</select>
+
+</label>
+
+<div class="row2">
+
+<label>
+Preferred date
+<input type="date" name="date" id="bookingDate" required>
+</label>
+
+<label>
+Preferred time
+<select name="time" required>
+<option value="">Choose time</option>
+<option>9:00 AM</option>
+<option>10:00 AM</option>
+<option>11:00 AM</option>
+<option>12:00 PM</option>
+<option>1:00 PM</option>
+<option>2:00 PM</option>
+<option>3:00 PM</option>
+<option>4:00 PM</option>
+<option>5:00 PM</option>
+</select>
+</label>
+
+</div>
+
+<label>
+iPhone model (optional)
+<input type="text" name="model" placeholder="e.g. iPhone 13 Pro Max">
+</label>
+
+<label>
+Additional information (optional)
+<textarea name="message" placeholder="Tell us more about your appointment..."></textarea>
+</label>
+
+<button type="submit" class="action-btn">
+Confirm Booking on WhatsApp →
+</button>
+
+<p class="booking-note">
+Your request will be sent to WhatsApp for confirmation.
+Appointments are subject to availability.
+</p>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section class="how-section">
+
+<div class="wrap">
+
+<div class="section-heading">
+
+<span class="swap-tag">SIMPLE & CONVENIENT</span>
+
+<h2>How It Works</h2>
+
+<p>Getting your next iPhone is just three simple steps.</p>
+
+</div>
+
+
+<div class="steps-grid">
+
+<div class="step">
+<div class="step-number">01</div>
+<h3>Choose Your Service</h3>
+<p>Select whether you want to buy, sell, swap, repair or purchase through installments.</p>
+</div>
+
+<div class="step">
+<div class="step-number">02</div>
+<h3>Send Your Request</h3>
+<p>Fill in your details and send your request directly to our WhatsApp team.</p>
+</div>
+
+<div class="step">
+<div class="step-number">03</div>
+<h3>Visit Our Store</h3>
+<p>Our team will communicate with you to confirm availability and arrange your visit.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="wrap">
+
+<div class="stripe" style="margin-bottom:24px;border-radius:3px"></div>
+
+<b style="color:#fff">RasOwuraku iPhones</b>
+
+<br>
+
+ADUM PZ, Pat Thomas Building, 2nd Floor
+
+<br>
+
+Call / WhatsApp:
+<a href="tel:+233241719370">+233 241719370</a>
+
+<br><br>
+
+Your Dream iPhone, Our Priority.
+
+</div>
+
+</footer>
+
+
+<!-- FLOATING WHATSAPP -->
+
+<a class="btn fab"
+id="fab"
+href="https://wa.me/233241719370"
+target="_blank"
+rel="noopener"
+aria-label="Chat on WhatsApp">
+
+WhatsApp
+
+</a>
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+// WhatsApp business number
+const businessWhatsApp = "233241719370";
+
+// Minimum booking date = today
+const bookingDate = document.getElementById("bookingDate");
+
+const today = new Date();
+const localToday = new Date(
+    today.getTime() - today.getTimezoneOffset() * 60000
+).toISOString().split("T")[0];
+
+bookingDate.min = localToday;
+
+
+// BOOKING FORM SUBMISSION
+
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const form = new FormData(this);
+
+    const name = form.get("name");
+    const phone = form.get("phone");
+    const service = form.get("service");
+    const date = form.get("date");
+    const time = form.get("time");
+    const model = form.get("model") || "Not specified";
+    const message = form.get("message") || "None";
+
+    const bookingMessage =
+`HELLO RASOWURAKU IPHONES!
+
+I would like to book an appointment.
+
+BOOKING DETAILS
+-------------------------
+Name: ${name}
+Phone: ${phone}
+Service: ${service}
+Preferred Date: ${date}
+Preferred Time: ${time}
+iPhone Model: ${model}
+
+Additional Information:
+${message}
+
+Please confirm the availability of my appointment.
+
+Thank you!`;
+
+    const whatsappURL =
+        "https://wa.me/" + businessWhatsApp +
+        "?text=" + encodeURIComponent(bookingMessage);
+
+    window.open(whatsappURL, "_blank");
+
+});
+
+
+// SWAP FORM SUBMISSION
+
+document.getElementById("swapForm").addEventListener("submit", function(e) {
+
+    e.preventDefault();
+
+    const form = new FormData(this);
+
+    const swapMessage =
+`HELLO RASOWURAKU IPHONES!
+
+I would like to request an iPhone swap valuation.
+
+CUSTOMER DETAILS
+-------------------------
+Name: ${form.get("name")}
+Phone: ${form.get("phone")}
+Current iPhone: ${form.get("old")}
+Battery Health: ${form.get("bat") || "Not specified"}%
+Condition: ${form.get("cond")}
+Desired Upgrade: ${form.get("want") || "Not specified"}
+
+Please evaluate my device and let me know my upgrade options.
+
+Thank you!`;
+
+    const whatsappURL =
+        "https://wa.me/" + businessWhatsApp +
+        "?text=" + encodeURIComponent(swapMessage);
+
+    window.open(whatsappURL, "_blank");
+
+});
+
+</script>
+
+<script src="app.js"></script>
+
+</body>
+</html>

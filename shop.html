@@ -1,0 +1,1917 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101820">
+<meta name="description" content="Shop iPhones at RasOwuraku. Buy, sell, swap and repair iPhones. Delivery and store pickup available.">
+<title>Online iPhone Store | RasOwuraku</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+<style>
+:root {
+    --bg: #101820;
+    --panel: #17252d;
+    --panel2: #1e303a;
+    --gold: #d4a937;
+    --gold2: #f3c75c;
+    --white: #ffffff;
+    --muted: #aeb9c0;
+    --green: #16a36a;
+    --border: rgba(255,255,255,.09);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+}
+
+button, input, select, textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.wrap {
+    max-width: 1250px;
+    width: 92%;
+    margin: auto;
+}
+
+.top-strip {
+    height: 5px;
+    background: linear-gradient(90deg,#d4a937,#e64b39,#159b65);
+}
+
+/* HEADER */
+
+header {
+    background: #111e26;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.nav {
+    min-height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 23px;
+    font-size: 13px;
+    color: #d1d9de;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.cart-button {
+    background: var(--gold);
+    color: #111820;
+    padding: 12px 17px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 800;
+}
+
+.cart-count {
+    background: #101820;
+    color: white;
+    border-radius: 50px;
+    padding: 2px 7px;
+    margin-left: 5px;
+}
+
+/* HERO */
+
+.hero {
+    padding: 75px 0;
+    background:
+    radial-gradient(circle at 85% 45%,rgba(212,169,55,.14),transparent 32%),
+    linear-gradient(135deg,#14232d,#101820);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    align-items: center;
+    gap: 45px;
+}
+
+.tag {
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.hero h1 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(40px,6vw,72px);
+    line-height: 1.04;
+    margin: 20px 0;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    color: var(--muted);
+    line-height: 1.8;
+    max-width: 560px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+    margin-top: 28px;
+}
+
+.btn {
+    display: inline-block;
+    border: 0;
+    border-radius: 10px;
+    padding: 14px 21px;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.btn-gold {
+    background: linear-gradient(100deg,var(--gold),var(--gold2));
+    color: #101820;
+}
+
+.btn-outline {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+}
+
+.hero-visual {
+    min-height: 320px;
+    border-radius: 30px;
+    background: linear-gradient(145deg,#263b46,#101820);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-phone {
+    font-size: 150px;
+    filter: drop-shadow(0 20px 25px rgba(0,0,0,.5));
+}
+
+.hero-visual strong {
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-top: 10px;
+}
+
+/* BENEFITS */
+
+.benefits {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 15px;
+    padding: 30px 0;
+}
+
+.benefit {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 20px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.benefit-icon {
+    font-size: 26px;
+}
+
+.benefit strong {
+    display: block;
+    font-size: 13px;
+}
+
+.benefit small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* SHOP */
+
+.shop-section {
+    padding: 65px 0;
+}
+
+.section-heading {
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    font-family: 'Bricolage Grotesque',sans-serif;
+    font-size: 35px;
+    margin: 10px 0;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.toolbar {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 17px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.field {
+    width: 100%;
+    padding: 13px;
+    background: #101b22;
+    border: 1px solid #394b55;
+    border-radius: 9px;
+    color: white;
+    outline: none;
+    font-size: 13px;
+}
+
+.field:focus {
+    border-color: var(--gold);
+}
+
+select.field option {
+    background: #17252d;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.product {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 17px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.product:hover {
+    transform: translateY(-6px);
+    border-color: var(--gold);
+}
+
+.product-image {
+    height: 210px;
+    background: linear-gradient(145deg,#293c47,#111c23);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.phone-placeholder {
+    font-size: 100px;
+    filter: drop-shadow(0 15px 12px rgba(0,0,0,.5));
+}
+
+.product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 6px 10px;
+    background: var(--gold);
+    color: #111820;
+    font-size: 10px;
+    font-weight: 800;
+    border-radius: 5px;
+}
+
+.product-info {
+    padding: 17px;
+}
+
+.product-info h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.product-info p {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.product-price {
+    color: var(--gold2);
+    font-weight: 800;
+    font-size: 19px;
+    margin: 13px 0;
+}
+
+.product-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.product-actions button {
+    flex: 1;
+    border-radius: 8px;
+    padding: 11px 6px;
+    font-size: 11px;
+    font-weight: 800;
+    border: 0;
+}
+
+.add-cart {
+    background: var(--gold);
+    color: #101820;
+}
+
+.quick-order {
+    background: #263b46;
+    color: white;
+}
+
+.stock {
+    color: #51d49b;
+    font-size: 11px;
+}
+
+.no-products {
+    grid-column: 1/-1;
+    text-align: center;
+    color: var(--muted);
+    padding: 60px 10px;
+}
+
+/* CART */
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+.overlay.show {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #17252d;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 25px;
+}
+
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 27px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-item small {
+    color: var(--muted);
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.quantity button {
+    padding: 4px 9px;
+    background: #314650;
+    border: 0;
+    color: white;
+    border-radius: 5px;
+}
+
+.remove {
+    background: transparent;
+    border: 0;
+    color: #ff7777;
+    font-size: 12px;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+/* CHECKOUT */
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.checkout-grid .full {
+    grid-column: 1/-1;
+}
+
+.payment-choice {
+    background: #101b22;
+    padding: 13px;
+    border-radius: 9px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.payment-choice label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.payment-choice input {
+    accent-color: var(--gold);
+}
+
+.checkout-summary {
+    background: #101b22;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 17px 0;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 2;
+}
+
+.checkout-summary strong {
+    color: white;
+}
+
+/* ADMIN */
+
+.admin-section {
+    padding: 60px 0;
+    background: #111c23;
+}
+
+.admin-box {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.admin-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.admin-tabs button {
+    padding: 11px 15px;
+    border: 1px solid var(--border);
+    background: #101820;
+    color: white;
+    border-radius: 8px;
+}
+
+.admin-tabs button.active {
+    background: var(--gold);
+    color: #101820;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    min-width: 650px;
+}
+
+.admin-table th,
+.admin-table td {
+    text-align: left;
+    padding: 13px;
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-table th {
+    color: var(--gold);
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+.admin-action {
+    background: #314650;
+    color: white;
+    border: 0;
+    padding: 7px 10px;
+    border-radius: 6px;
+    margin: 2px;
+}
+
+.admin-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.admin-form .full {
+    grid-column: 1/-1;
+}
+
+/* FOOTER */
+
+footer {
+    padding: 40px 0;
+    background: #0b1319;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 2;
+}
+
+footer strong {
+    color: white;
+}
+
+footer a {
+    color: var(--gold);
+}
+
+.fab {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 60;
+    background: #20b96e;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 40px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.4);
+    font-weight: 800;
+}
+
+.notice {
+    color: #f4c95e;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-top: 15px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media(max-width:950px) {
+    .product-grid {
+        grid-template-columns: repeat(3,1fr);
+    }
+    .benefits {
+        grid-template-columns: repeat(2,1fr);
+    }
+    .nav-links {
+        gap: 12px;
+    }
+}
+
+@media(max-width:650px) {
+    .nav {
+        flex-wrap: wrap;
+        padding: 14px 0;
+    }
+    .nav-links {
+        order: 3;
+        width: 100%;
+        overflow-x: auto;
+        padding: 10px 0;
+    }
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero {
+        padding: 50px 0;
+    }
+    .hero-visual {
+        min-height: 220px;
+    }
+    .hero-phone {
+        font-size: 110px;
+    }
+    .product-grid {
+        grid-template-columns: repeat(2,1fr);
+        gap: 12px;
+    }
+    .product-image {
+        height: 155px;
+    }
+    .product-info {
+        padding: 12px;
+    }
+    .product-info h3 {
+        font-size: 14px;
+    }
+    .toolbar {
+        grid-template-columns: 1fr 1fr;
+    }
+    .toolbar input {
+        grid-column: 1/-1;
+    }
+    .checkout-grid,
+    .admin-form {
+        grid-template-columns: 1fr;
+    }
+    .checkout-grid .full,
+    .admin-form .full {
+        grid-column: auto;
+    }
+    .benefits {
+        grid-template-columns: 1fr 1fr;
+    }
+    .benefit {
+        padding: 13px 8px;
+    }
+    .benefit-icon {
+        font-size: 20px;
+    }
+}
+
+@media(max-width:380px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-strip"></div>
+
+<header>
+<div class="wrap nav">
+
+<a href="index.html" class="logo">
+RasOwuraku <span>iPhones</span>
+</a>
+
+<nav class="nav-links">
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="swap.html">Buy & Swap</a>
+<a href="repair.html">Repairs</a>
+<a href="installments.html">Installments</a>
+<a href="contact.html">Contact</a>
+<a href="admin.html">Admin</a>
+</nav>
+
+<button class="cart-button" onclick="openCart()">
+🛒 Cart <span class="cart-count" id="cartCount">0</span>
+</button>
+
+</div>
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+<div class="wrap hero-grid">
+
+<div>
+<span class="tag">WELCOME TO RASOWURAKU IPHONES</span>
+
+<h1>
+Your Next<br>
+<span>iPhone Starts Here.</span>
+</h1>
+
+<p>
+Discover premium iPhones, competitive offers and a convenient
+shopping experience. Buy your favourite device, swap your old
+phone or choose a flexible installment plan.
+</p>
+
+<div class="hero-actions">
+<a href="#products" class="btn btn-gold">Explore iPhones →</a>
+<a href="https://wa.me/233241719370" class="btn btn-outline">Talk to Us</a>
+</div>
+</div>
+
+<div class="hero-visual">
+<div class="hero-phone">📱</div>
+<strong>PREMIUM. TRUSTED. CONNECTED.</strong>
+</div>
+
+</div>
+</section>
+
+
+<!-- BENEFITS -->
+
+<section class="wrap benefits">
+
+<div class="benefit">
+<span class="benefit-icon">📱</span>
+<div>
+<strong>Premium iPhones</strong>
+<small>Explore available models</small>
+</div>
+</div>
+
+<div class="benefit">
+<span class="benefit-icon">🔄</span>
+<div>
+<strong>Buy & Swap</strong>
+<small>Upgrade your device</small>
+</div>
+</div>
+
+<div class="benefit">
+<span class="benefit-icon">🚚</span>
+<div>
+<strong>Delivery Available</strong>
+<small>Or collect from our store</small>
+</div>
+</div>
+
+<div class="benefit">
+<span class="benefit-icon">💳</span>
+<div>
+<strong>Flexible Payment</strong>
+<small>Online or WhatsApp</small>
+</div>
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="shop-section" id="products">
+<div class="wrap">
+
+<div class="section-heading">
+<span class="tag">OUR COLLECTION</span>
+<h2>Explore Our iPhones</h2>
+<p>Find your perfect iPhone. Select your model and place your order.</p>
+</div>
+
+<div class="toolbar">
+
+<input class="field" id="searchInput"
+placeholder="🔍 Search iPhone model...">
+
+<select class="field" id="categoryFilter">
+<option value="">All Models</option>
+<option value="iPhone 11">iPhone 11 Series</option>
+<option value="iPhone 12">iPhone 12 Series</option>
+<option value="iPhone 13">iPhone 13 Series</option>
+<option value="iPhone 14">iPhone 14 Series</option>
+<option value="iPhone 15">iPhone 15 Series</option>
+<option value="iPhone 16">iPhone 16 Series</option>
+<option value="iPhone 17">iPhone 17 Series</option>
+</select>
+
+<select class="field" id="storageFilter">
+<option value="">All Storage</option>
+<option value="64GB">64GB</option>
+<option value="128GB">128GB</option>
+<option value="256GB">256GB</option>
+<option value="512GB">512GB</option>
+<option value="1TB">1TB</option>
+</select>
+
+<select class="field" id="sortFilter">
+<option value="">Sort Products</option>
+<option value="low">Price: Low to High</option>
+<option value="high">Price: High to Low</option>
+<option value="name">Name: A to Z</option>
+</select>
+
+</div>
+
+<div class="product-grid" id="productGrid"></div>
+
+</div>
+</section>
+
+
+<!-- CART MODAL -->
+
+<div class="overlay" id="cartOverlay">
+<div class="modal">
+
+<div class="modal-head">
+<h2>🛒 Your Shopping Cart</h2>
+<button class="close" onclick="closeModal('cartOverlay')">×</button>
+</div>
+
+<div id="cartItems"></div>
+
+<div class="cart-total">
+<span>Total</span>
+<span id="cartTotal">GH₵0.00</span>
+</div>
+
+<button class="btn btn-gold" style="width:100%"
+onclick="openCheckout()">
+Proceed to Checkout →
+</button>
+
+</div>
+</div>
+
+
+<!-- CHECKOUT MODAL -->
+
+<div class="overlay" id="checkoutOverlay">
+<div class="modal">
+
+<div class="modal-head">
+<h2>Secure Checkout</h2>
+<button class="close" onclick="closeModal('checkoutOverlay')">×</button>
+</div>
+
+<form id="checkoutForm">
+
+<div class="checkout-grid">
+
+<div>
+<label>Full name</label>
+<input class="field" name="name" required placeholder="Your full name">
+</div>
+
+<div>
+<label>Phone number</label>
+<input class="field" name="phone" required type="tel" placeholder="+233...">
+</div>
+
+<div class="full">
+<label>Email address</label>
+<input class="field" name="email" required type="email" placeholder="you@example.com">
+</div>
+
+<div class="full">
+<label>Delivery method</label>
+<div class="payment-choice">
+<label><input type="radio" name="delivery" value="Store Pickup" checked onchange="updateCheckout()"> Store pickup – Adum PZ, Pat Thomas Building, 2nd Floor</label>
+</div>
+<div class="payment-choice">
+<label><input type="radio" name="delivery" value="Home Delivery" onchange="updateCheckout()"> Home delivery</label>
+</div>
+</div>
+
+<div class="full hidden" id="addressBox">
+<label>Delivery address</label>
+<textarea class="field" name="address" placeholder="Enter your full delivery address"></textarea>
+</div>
+
+<div class="full">
+<label>Payment method</label>
+<div class="payment-choice">
+<label><input type="radio" name="payment" value="whatsapp" checked> WhatsApp – arrange payment with us</label>
+</div>
+<div class="payment-choice">
+<label><input type="radio" name="payment" value="online"> Online payment – Paystack</label>
+</div>
+</div>
+
+<div class="full">
+<label>Additional instructions (optional)</label>
+<textarea class="field" name="notes" placeholder="Any additional information..."></textarea>
+</div>
+
+</div>
+
+<div class="checkout-summary" id="checkoutSummary"></div>
+
+<button type="submit" class="btn btn-gold" style="width:100%">
+Place My Order →
+</button>
+
+<p class="notice">
+Online payments require a configured Paystack public key and
+a secure server-side payment verification endpoint.
+</p>
+
+</form>
+
+</div>
+</div>
+
+
+<!-- ADMIN AREA -->
+
+<section class="admin-section" id="admin">
+<div class="wrap">
+
+<div class="section-heading">
+<span class="tag">STORE MANAGEMENT</span>
+<h2>Administrator Dashboard</h2>
+<p>Manage your store products and customer orders.</p>
+</div>
+
+<div class="admin-box">
+
+<div id="adminLogin">
+<h3>Administrator Access</h3>
+<p style="color:var(--muted);font-size:13px;margin:12px 0">
+Enter the demo administrator password to access management.
+</p>
+<input type="password" class="field" id="adminPassword"
+placeholder="Administrator password">
+<br><br>
+<button class="btn btn-gold" onclick="loginAdmin()">Login</button>
+<p class="notice">
+Demo password is CHANGE-ME-123. Change it in the JavaScript.
+This browser-only login is not secure for a live store.
+</p>
+</div>
+
+<div id="adminDashboard" class="hidden">
+
+<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
+<h3>Store Dashboard</h3>
+<button class="admin-action" onclick="logoutAdmin()">Logout</button>
+</div>
+
+<div class="admin-tabs">
+<button class="active" onclick="showAdminTab('productsTab',this)">Products</button>
+<button onclick="showAdminTab('ordersTab',this)">Orders</button>
+</div>
+
+
+<!-- PRODUCT MANAGEMENT -->
+
+<div id="productsTab">
+
+<h3>Add / Update Product</h3>
+
+<form class="admin-form" id="productForm">
+
+<input class="field" name="id" type="hidden">
+
+<input class="field" name="name" required placeholder="Product name e.g. iPhone 15 Pro">
+
+<input class="field" name="storage" required placeholder="Storage e.g. 256GB">
+
+<input class="field" name="color" placeholder="Colour">
+
+<input class="field" name="price" type="number" min="1" required placeholder="Price in GHS">
+
+<input class="field" name="stock" type="number" min="0" required placeholder="Stock quantity">
+
+<select class="field" name="condition">
+<option>Brand New</option>
+<option>UK Used</option>
+<option>Refurbished</option>
+</select>
+
+<input class="field full" name="image" placeholder="Product image URL (optional)">
+
+<button class="btn btn-gold full" type="submit">Save Product</button>
+
+</form>
+
+<div class="table-wrap">
+<table class="admin-table">
+<thead>
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Stock</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="adminProducts"></tbody>
+</table>
+</div>
+
+</div>
+
+
+<!-- ORDER MANAGEMENT -->
+
+<div id="ordersTab" class="hidden">
+
+<h3>Customer Orders</h3>
+
+<div class="table-wrap">
+<table class="admin-table">
+<thead>
+<tr>
+<th>Order ID</th>
+<th>Customer</th>
+<th>Product(s)</th>
+<th>Total</th>
+<th>Payment</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="adminOrders"></tbody>
+</table>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+<div class="wrap">
+
+<strong>RasOwuraku iPhones</strong><br>
+
+ADUM PZ, Pat Thomas Building, 2nd Floor<br>
+
+Call / WhatsApp:
+<a href="tel:+233241719370">+233 241719370</a><br><br>
+
+<a href="https://wa.me/233241719370">Contact us on WhatsApp</a><br><br>
+
+Your Dream iPhone, Our Priority.
+
+</div>
+</footer>
+
+<a class="fab" href="https://wa.me/233241719370"
+target="_blank" rel="noopener">WhatsApp</a>
+
+
+<script>
+
+// ====================================
+// RASOWURAKU IPHONES STORE
+// ====================================
+
+const WHATSAPP = "233241719370";
+
+// DEMO ADMIN PASSWORD.
+// This is NOT secure for production.
+const ADMIN_PASSWORD = "CHANGE-ME-123";
+
+// Add your Paystack public key here.
+// Never put your secret key in this file.
+const PAYSTACK_PUBLIC_KEY = "pk_test_REPLACE_WITH_YOUR_PUBLIC_KEY";
+
+// Your secure backend must verify Paystack references.
+const VERIFY_PAYMENT_ENDPOINT = "/api/verify-payment";
+
+
+// ====================================
+// SAMPLE PRODUCTS
+// Change these demonstration prices
+// to your actual store prices.
+// ====================================
+
+const starterProducts = [
+    {id:1,name:"iPhone 11",storage:"128GB",color:"Black",price:1800,stock:5,condition:"UK Used",image:"",badge:"Popular"},
+    {id:2,name:"iPhone 12",storage:"128GB",color:"Blue",price:2300,stock:4,condition:"UK Used",image:"",badge:"Best Seller"},
+    {id:3,name:"iPhone 13",storage:"128GB",color:"Midnight",price:3000,stock:5,condition:"UK Used",image:"",badge:"Trending"},
+    {id:4,name:"iPhone 13 Pro",storage:"256GB",color:"Sierra Blue",price:3800,stock:3,condition:"UK Used",image:"",badge:"Premium"},
+    {id:5,name:"iPhone 14",storage:"128GB",color:"Purple",price:3900,stock:4,condition:"UK Used",image:"",badge:"Popular"},
+    {id:6,name:"iPhone 14 Pro",storage:"256GB",color:"Deep Purple",price:4900,stock:3,condition:"UK Used",image:"",badge:"Premium"},
+    {id:7,name:"iPhone 15",storage:"128GB",color:"Pink",price:4800,stock:3,condition:"UK Used",image:"",badge:"Trending"},
+    {id:8,name:"iPhone 15 Pro Max",storage:"256GB",color:"Natural Titanium",price:6500,stock:2,condition:"UK Used",image:"",badge:"Premium"}
+];
+
+function loadData(key, fallback) {
+    try {
+        const data = localStorage.getItem(key);
+        return data ? JSON.parse(data) : fallback;
+    } catch {
+        return fallback;
+    }
+}
+
+let products = loadData("ras_products", starterProducts);
+let cart = loadData("ras_cart", []);
+let orders = loadData("ras_orders", []);
+
+function saveData() {
+    localStorage.setItem("ras_products",JSON.stringify(products));
+    localStorage.setItem("ras_cart",JSON.stringify(cart));
+    localStorage.setItem("ras_orders",JSON.stringify(orders));
+}
+
+function money(amount) {
+    return "GH₵" + Number(amount).toLocaleString("en-GH", {
+        minimumFractionDigits:2,
+        maximumFractionDigits:2
+    });
+}
+
+
+// ====================================
+// PRODUCT CATALOGUE
+// ====================================
+
+function renderProducts() {
+
+    const grid = document.getElementById("productGrid");
+
+    const search = document.getElementById("searchInput").value.toLowerCase();
+    const category = document.getElementById("categoryFilter").value;
+    const storage = document.getElementById("storageFilter").value;
+    const sort = document.getElementById("sortFilter").value;
+
+    let filtered = products.filter(p => {
+
+        const matchesSearch =
+            (p.name + " " + p.color + " " + p.condition)
+            .toLowerCase().includes(search);
+
+        const matchesCategory = !category || p.name.startsWith(category);
+        const matchesStorage = !storage || p.storage === storage;
+
+        return matchesSearch && matchesCategory && matchesStorage;
+    });
+
+    if(sort === "low") filtered.sort((a,b)=>a.price-b.price);
+    if(sort === "high") filtered.sort((a,b)=>b.price-a.price);
+    if(sort === "name") filtered.sort((a,b)=>a.name.localeCompare(b.name));
+
+    if(!filtered.length) {
+        grid.innerHTML = '<div class="no-products">No matching iPhones found. Try another search.</div>';
+        return;
+    }
+
+    grid.innerHTML = filtered.map(p => `
+        <article class="product">
+
+            <div class="product-image">
+                ${p.image
+                    ? `<img src="${escapeHTML(p.image)}" alt="${escapeHTML(p.name)}" loading="lazy">`
+                    : `<div class="phone-placeholder">📱</div>`
+                }
+
+                ${p.badge ? `<span class="product-badge">${escapeHTML(p.badge)}</span>` : ""}
+            </div>
+
+            <div class="product-info">
+
+                <h3>${escapeHTML(p.name)}</h3>
+
+                <p>${escapeHTML(p.storage)} • ${escapeHTML(p.color || "Various colours")}</p>
+
+                <p>${escapeHTML(p.condition)}</p>
+
+                <div class="stock">
+                    ${p.stock > 0 ? "● In stock ("+p.stock+")" : "● Out of stock"}
+                </div>
+
+                <div class="product-price">${money(p.price)}</div>
+
+                <div class="product-actions">
+
+                    <button class="add-cart"
+                    onclick="addToCart(${p.id})"
+                    ${p.stock < 1 ? "disabled" : ""}>
+                    Add to Cart
+                    </button>
+
+                    <button class="quick-order"
+                    onclick="quickOrder(${p.id})"
+                    ${p.stock < 1 ? "disabled" : ""}>
+                    Buy Now
+                    </button>
+
+                </div>
+
+            </div>
+        </article>
+    `).join("");
+
+}
+
+
+// Escape product data before placing it into HTML.
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+    })[char]);
+}
+
+
+// ====================================
+// SHOPPING CART
+// ====================================
+
+function addToCart(id) {
+
+    const product = products.find(p=>p.id===id);
+    if(!product || product.stock < 1) return;
+
+    const existing = cart.find(i=>i.id===id);
+
+    if(existing) {
+        if(existing.quantity >= product.stock) {
+            alert("You have added all available stock.");
+            return;
+        }
+        existing.quantity++;
+    } else {
+        cart.push({id:id,quantity:1});
+    }
+
+    saveData();
+    updateCartCount();
+    alert("Added to your cart!");
+}
+
+function updateCartCount() {
+    const count = cart.reduce((sum,item)=>sum+item.quantity,0);
+    document.getElementById("cartCount").textContent=count;
+}
+
+function cartTotal() {
+    return cart.reduce((sum,item)=>{
+        const p=products.find(x=>x.id===item.id);
+        return sum+(p ? p.price*item.quantity : 0);
+    },0);
+}
+
+function openCart() {
+    renderCart();
+    document.getElementById("cartOverlay").classList.add("show");
+}
+
+function renderCart() {
+
+    const box=document.getElementById("cartItems");
+
+    if(!cart.length) {
+        box.innerHTML='<p style="color:var(--muted);padding:25px 0">Your shopping cart is empty.</p>';
+    } else {
+
+        box.innerHTML=cart.map(item=>{
+
+            const p=products.find(x=>x.id===item.id);
+            if(!p) return "";
+
+            return `
+            <div class="cart-item">
+
+                <div>
+                    <strong>${escapeHTML(p.name)}</strong><br>
+                    <small>${escapeHTML(p.storage)} • ${escapeHTML(p.color)}</small>
+
+                    <div class="quantity">
+                        <button onclick="changeQuantity(${p.id},-1)">−</button>
+                        ${item.quantity}
+                        <button onclick="changeQuantity(${p.id},1)">+</button>
+                    </div>
+                </div>
+
+                <div style="text-align:right">
+                    <strong>${money(p.price*item.quantity)}</strong><br>
+                    <button class="remove" onclick="removeCart(${p.id})">Remove</button>
+                </div>
+
+            </div>`;
+        }).join("");
+    }
+
+    document.getElementById("cartTotal").textContent=money(cartTotal());
+}
+
+function changeQuantity(id,amount) {
+
+    const item=cart.find(i=>i.id===id);
+    const p=products.find(x=>x.id===id);
+
+    if(!item || !p) return;
+
+    const next=item.quantity+amount;
+
+    if(next<1) {
+        removeCart(id);
+        return;
+    }
+
+    if(next>p.stock) {
+        alert("Not enough stock available.");
+        return;
+    }
+
+    item.quantity=next;
+    saveData();
+    updateCartCount();
+    renderCart();
+}
+
+function removeCart(id) {
+    cart=cart.filter(i=>i.id!==id);
+    saveData();
+    updateCartCount();
+    renderCart();
+}
+
+function closeModal(id) {
+    document.getElementById(id).classList.remove("show");
+}
+
+function openCheckout() {
+
+    if(!cart.length) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    closeModal("cartOverlay");
+    updateCheckout();
+    document.getElementById("checkoutOverlay").classList.add("show");
+}
+
+function quickOrder(id) {
+
+    const p=products.find(x=>x.id===id);
+    if(!p || p.stock<1) return;
+
+    cart=[{id:id,quantity:1}];
+    saveData();
+    updateCartCount();
+    openCheckout();
+}
+
+
+// ====================================
+// CHECKOUT
+// ====================================
+
+function updateCheckout() {
+
+    const delivery=document.querySelector('[name="delivery"]:checked')?.value || "Store Pickup";
+
+    document.getElementById("addressBox").classList.toggle(
+        "hidden",delivery!=="Home Delivery"
+    );
+
+    document.getElementById("checkoutSummary").innerHTML=`
+        <strong>Order summary</strong><br>
+        Items: ${cart.reduce((s,i)=>s+i.quantity,0)}<br>
+        Products total: ${money(cartTotal())}<br>
+        Delivery fee: To be confirmed with the store<br>
+        <strong>Product total: ${money(cartTotal())}</strong>
+    `;
+}
+
+document.querySelectorAll('[name="delivery"]').forEach(input=>{
+    input.addEventListener("change",updateCheckout);
+});
+
+
+// Generate unique order reference
+function orderReference() {
+    return "RAS" + Date.now().toString().slice(-9);
+}
+
+function getCheckoutDetails() {
+
+    const form=document.getElementById("checkoutForm");
+    const data=new FormData(form);
+
+    const delivery=data.get("delivery");
+    const payment=data.get("payment");
+
+    if(delivery==="Home Delivery" && !data.get("address").trim()) {
+        alert("Please enter your delivery address.");
+        return null;
+    }
+
+    for(const item of cart) {
+        const p=products.find(x=>x.id===item.id);
+        if(!p || p.stock<item.quantity) {
+            alert("One of your products is no longer available in the requested quantity.");
+            return null;
+        }
+    }
+
+    const items=cart.map(item=>{
+        const p=products.find(x=>x.id===item.id);
+        return {
+            id:p.id,
+            name:p.name,
+            storage:p.storage,
+            quantity:item.quantity,
+            price:p.price
+        };
+    });
+
+    return {
+        id:orderReference(),
+        name:data.get("name").trim(),
+        phone:data.get("phone").trim(),
+        email:data.get("email").trim(),
+        delivery:delivery,
+        address:data.get("address") || "",
+        payment:payment,
+        notes:data.get("notes") || "",
+        items:items,
+        total:cartTotal(),
+        status:"Pending",
+        paymentStatus:payment==="online"?"Pending Payment":"Arrange via WhatsApp",
+        date:new Date().toISOString()
+    };
+}
+
+
+// ====================================
+// WHATSAPP ORDER
+// ====================================
+
+function sendWhatsAppOrder(order) {
+
+    let message=`RASOWURAKU IPHONES - NEW ORDER
+
+Order ID: ${order.id}
+
+CUSTOMER DETAILS
+Name: ${order.name}
+Phone: ${order.phone}
+Email: ${order.email}
+
+PRODUCTS
+`;
+
+    order.items.forEach(item=>{
+        message+=`
+${item.name} (${item.storage})
+Quantity: ${item.quantity}
+Unit price: ${money(item.price)}
+`;
+    });
+
+    message+=`
+PRODUCT TOTAL: ${money(order.total)}
+
+DELIVERY: ${order.delivery}
+ADDRESS: ${order.address || "Store pickup - Adum PZ"}
+
+PAYMENT: WhatsApp arrangement
+
+NOTES: ${order.notes}
+
+Please confirm my order. Thank you!`;
+
+    window.open(
+        "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(message),
+        "_blank"
+    );
+}
+
+
+// ====================================
+// PAYSTACK ONLINE PAYMENT
+// ====================================
+
+async function payOnline(order) {
+
+    if(!PAYSTACK_PUBLIC_KEY.startsWith("pk_") ||
+       PAYSTACK_PUBLIC_KEY.includes("REPLACE")) {
+        alert("Online payment is not configured yet. Please use WhatsApp checkout or contact the store.");
+        return;
+    }
+
+    if(!window.PaystackPop) {
+        alert("Payment service could not load. Please try again.");
+        return;
+    }
+
+    const handler=PaystackPop.setup({
+
+        key:PAYSTACK_PUBLIC_KEY,
+
+        email:order.email,
+
+        amount:Math.round(order.total*100),
+
+        currency:"GHS",
+
+        ref:order.id,
+
+        metadata:{
+            order_id:order.id,
+            customer_name:order.name,
+            phone:order.phone
+        },
+
+        callback:async function(response) {
+
+            try {
+
+                const result=await fetch(VERIFY_PAYMENT_ENDPOINT,{
+                    method:"POST",
+                    headers:{"Content-Type":"application/json"},
+                    body:JSON.stringify({
+                        reference:response.reference,
+                        order_id:order.id
+                    })
+                });
+
+                const verified=await result.json();
+
+                if(!result.ok || verified.status!=="success") {
+                    alert("Payment is awaiting verification. Contact the store with reference: "+response.reference);
+                    return;
+                }
+
+                order.paymentStatus="Paid";
+                order.status="Confirmed";
+
+                completeOrder(order);
+
+                alert("Payment verified. Your order has been received!");
+
+            } catch(error) {
+                alert("Payment verification is unavailable. Keep your payment reference: "+response.reference);
+            }
+        },
+
+        onClose:function() {
+            alert("Payment window closed. Your order has not been confirmed.");
+        }
+
+    });
+
+    handler.openIframe();
+}
+
+
+// ====================================
+// SAVE COMPLETED ORDER
+// ====================================
+
+function completeOrder(order) {
+
+    order.items.forEach(item=>{
+        const p=products.find(x=>x.id===item.id);
+        if(p) p.stock-=item.quantity;
+    });
+
+    orders.unshift(order);
+
+    cart=[];
+    saveData();
+    updateCartCount();
+
+    document.getElementById("checkoutForm").reset();
+    closeModal("checkoutOverlay");
+
+    renderProducts();
+    updateCheckout();
+}
+
+
+// CHECKOUT SUBMISSION
+
+document.getElementById("checkoutForm").addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const order=getCheckoutDetails();
+    if(!order) return;
+
+    if(order.payment==="whatsapp") {
+
+        // Save a pending request locally before opening WhatsApp.
+        orders.unshift(order);
+        saveData();
+
+        sendWhatsAppOrder(order);
+
+        // WhatsApp opening does not mean the customer has sent the message.
+        // Stock is not deducted until the store confirms the order.
+        cart=[];
+        saveData();
+        updateCartCount();
+
+        this.reset();
+        closeModal("checkoutOverlay");
+
+        alert("Your WhatsApp order message is ready. Please send it to complete your order request.");
+
+    } else {
+        payOnline(order);
+    }
+
+});
+
+
+// ====================================
+// ADMIN AUTHENTICATION - DEMO ONLY
+// ====================================
+
+function loginAdmin() {
+
+    const password=document.getElementById("adminPassword").value;
+
+    if(password!==ADMIN_PASSWORD) {
+        alert("Incorrect administrator password.");
+        return;
+    }
+
+    sessionStorage.setItem("ras_admin","true");
+
+    document.getElementById("adminLogin").classList.add("hidden");
+    document.getElementById("adminDashboard").classList.remove("hidden");
+
+    renderAdmin();
+}
+
+function logoutAdmin() {
+    sessionStorage.removeItem("ras_admin");
+    document.getElementById("adminDashboard").classList.add("hidden");
+    document.getElementById("adminLogin").classList.remove("hidden");
+}
+
+function showAdminTab(id,button) {
+
+    document.getElementById("productsTab").classList.add("hidden");
+    document.getElementById("ordersTab").classList.add("hidden");
+
+    document.getElementById(id).classList.remove("hidden");
+
+    document.querySelectorAll(".admin-tabs button").forEach(b=>{
+        b.classList.remove("active");
+    });
+
+    button.classList.add("active");
+}
+
+
+// ====================================
+// PRODUCT MANAGEMENT
+// ====================================
+
+document.getElementById("productForm").addEventListener("submit",function(e){
+
+    e.preventDefault();
+
+    const data=new FormData(this);
+
+    const id=data.get("id");
+
+    const product={
+        id:id?Number(id):Date.now(),
+        name:data.get("name").trim(),
+        storage:data.get("storage").trim(),
+        color:data.get("color").trim(),
+        price:Number(data.get("price")),
+        stock:Number(data.get("stock")),
+        condition:data.get("condition"),
+        image:data.get("image").trim(),
+        badge:"Available"
+    };
+
+    if(!product.name || !product.price || product.price<=0 ||
+       !Number.isInteger(product.stock) || product.stock<0) {
+        alert("Please enter valid product details.");
+        return;
+    }
+
+    if(id) {
+        products=products.map(p=>p.id===Number(id)?product:p);
+    } else {
+        products.push(product);
+    }
+
+    saveData();
+    this.reset();
+
+    renderAdmin();
+    renderProducts();
+
+    alert("Product saved successfully!");
+
+});
+
+function renderAdmin() {
+
+    document.getElementById("adminProducts").innerHTML=products.map(p=>`
+
+        <tr>
+            <td>${escapeHTML(p.name)}<br>${escapeHTML(p.storage)}</td>
+            <td>${money(p.price)}</td>
+            <td>${p.stock}</td>
+            <td>
+                <button class="admin-action" onclick="editProduct(${p.id})">Edit</button>
+                <button class="admin-action" onclick="deleteProduct(${p.id})">Delete</button>
+            </td>
+        </tr>
+
+    `).join("");
+
+    document.getElementById("adminOrders").innerHTML=orders.map(o=>`
+
+        <tr>
+            <td>${escapeHTML(o.id)}</td>
+            <td>${escapeHTML(o.name)}</td>
+            <td>${o.items.map(i=>escapeHTML(i.name)+" × "+i.quantity).join("<br>")}</td>
+            <td>${money(o.total)}</td>
+            <td>${escapeHTML(o.paymentStatus)}</td>
+            <td>
+                <select class="field" onchange="changeOrderStatus('${escapeHTML(o.id)}',this.value)">
+                    ${["Pending","Confirmed","Processing","Shipped","Completed","Cancelled"].map(s=>
+                        `<option ${o.status===s?"selected":""}>${s}</option>`
+                    ).join("")}
+                </select>
+            </td>
+            <td>
+                <button class="admin-action" onclick="viewOrder('${escapeHTML(o.id)}')">View</button>
+            </td>
+        </tr>
+
+    `).join("");
+
+}
+
+function editProduct(id) {
+
+    const p=products.find(x=>x.id===id);
+    if(!p) return;
+
+    const form=document.getElementById("productForm");
+
+    Object.keys(p).forEach(key=>{
+        if(form.elements[key]) form.elements[key].value=p[key];
+    });
+
+    form.scrollIntoView({behavior:"smooth"});
+}
+
+function deleteProduct(id) {
+
+    if(!confirm("Delete this product?")) return;
+
+    products=products.filter(p=>p.id!==id);
+    cart=cart.filter(i=>i.id!==id);
+
+    saveData();
+    updateCartCount();
+    renderAdmin();
+    renderProducts();
+
+}
+
+function changeOrderStatus(id,status) {
+
+    const order=orders.find(o=>o.id===id);
+    if(!order) return;
+
+    order.status=status;
+    saveData();
+
+    alert("Order status updated.");
+}
+
+function viewOrder(id) {
+
+    const order=orders.find(o=>o.id===id);
+    if(!order) return;
+
+    alert(
+        "ORDER: "+order.id+
+        "\nCustomer: "+order.name+
+        "\nPhone: "+order.phone+
+        "\nDelivery: "+order.delivery+
+        "\nAddress: "+order.address+
+        "\nPayment: "+order.paymentStatus+
+        "\nTotal: "+money(order.total)+
+        "\nStatus: "+order.status
+    );
+
+}
+
+
+// ====================================
+// SEARCH AND FILTERS
+// ====================================
+
+["searchInput","categoryFilter","storageFilter","sortFilter"].forEach(id=>{
+
+    document.getElementById(id).addEventListener(
+        id==="searchInput"?"input":"change",
+        renderProducts
+    );
+
+});
+
+
+// ====================================
+// INITIALISE STORE
+// ====================================
+
+renderProducts();
+updateCartCount();
+
+if(sessionStorage.getItem("ras_admin")==="true") {
+    document.getElementById("adminLogin").classList.add("hidden");
+    document.getElementById("adminDashboard").classList.remove("hidden");
+    renderAdmin();
+}
+
+</script>
+
+</body>
+</html>
