@@ -1,0 +1,1158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="RasOwuraku iPhones administration dashboard.">
+<title>Admin Dashboard | RasOwuraku iPhones</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold:#d9ad45;
+  --gold-light:#f5d783;
+  --black:#080808;
+  --dark:#111;
+  --panel:#171717;
+  --border:#303030;
+  --muted:#aaa;
+  --green:#20b56a;
+  --red:#e45b5b;
+}
+
+* {box-sizing:border-box}
+
+body {
+  margin:0;
+  background:var(--black);
+  color:white;
+  font-family:'DM Sans',sans-serif;
+}
+
+button,input,select,textarea {font:inherit}
+
+.stripe {
+  height:4px;
+  background:linear-gradient(90deg,#d9ad45,#eee,#d9ad45);
+}
+
+.wrap {
+  width:min(1300px,94%);
+  margin:auto;
+}
+
+/* HEADER */
+
+header {
+  background:#090909;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.header-content {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:12px 0;
+}
+
+.brand-area {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-area img {
+  width:52px;
+  height:52px;
+  object-fit:contain;
+  border:1px solid var(--gold);
+  border-radius:50%;
+}
+
+.brand {
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-weight:800;
+  font-size:19px;
+}
+
+.brand span {color:var(--gold)}
+
+nav {
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+}
+
+nav a {
+  text-decoration:none;
+  color:#ddd;
+  padding:10px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:700;
+}
+
+nav a:hover,nav a.active {
+  background:var(--gold);
+  color:#111;
+}
+
+/* LOGIN */
+
+.login-screen {
+  min-height:75vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px 15px;
+}
+
+.login-box {
+  width:100%;
+  max-width:420px;
+  padding:35px;
+  text-align:center;
+  border:1px solid #55451e;
+  background:linear-gradient(145deg,#191919,#0c0c0c);
+  border-radius:20px;
+}
+
+.login-box img {
+  width:100px;
+  height:100px;
+  object-fit:contain;
+  border-radius:50%;
+  border:2px solid var(--gold);
+  margin-bottom:15px;
+}
+
+.login-box h1 {
+  font-family:'Bricolage Grotesque',sans-serif;
+  color:var(--gold);
+  font-size:27px;
+}
+
+.login-box p {
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+input,select,textarea {
+  width:100%;
+  background:#090909;
+  color:white;
+  border:1px solid #444;
+  padding:13px;
+  border-radius:9px;
+  outline:none;
+  margin-top:7px;
+}
+
+input:focus,select:focus,textarea:focus {
+  border-color:var(--gold);
+}
+
+label {
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:15px;
+}
+
+button {
+  cursor:pointer;
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid var(--gold);
+  background:transparent;
+  color:white;
+  border-radius:25px;
+  padding:11px 17px;
+  font-size:13px;
+  font-weight:700;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.btn:hover {opacity:.8;transform:translateY(-2px)}
+
+.btn.gold {
+  background:linear-gradient(135deg,#f5d783,#c4932e);
+  color:#111;
+  border:none;
+}
+
+.btn.green {
+  background:#159b53;
+  border:none;
+}
+
+.btn.red {
+  background:#a32b2b;
+  border:none;
+}
+
+.btn.small {
+  padding:7px 11px;
+  font-size:11px;
+  margin:2px;
+}
+
+.full {width:100%}
+
+/* DASHBOARD */
+
+main {padding:35px 0 60px}
+
+.welcome {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:15px;
+  margin-bottom:30px;
+}
+
+.welcome h1 {
+  font-family:'Bricolage Grotesque',sans-serif;
+  margin:0;
+  font-size:clamp(25px,4vw,36px);
+}
+
+.welcome h1 span {color:var(--gold)}
+
+.welcome p {
+  color:var(--muted);
+  margin:7px 0 0;
+  font-size:14px;
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:17px;
+  margin-bottom:35px;
+}
+
+.stat {
+  background:linear-gradient(145deg,#1c1c1c,#111);
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:22px;
+}
+
+.stat .icon {
+  font-size:25px;
+}
+
+.stat p {
+  color:var(--muted);
+  margin:12px 0 5px;
+  font-size:13px;
+}
+
+.stat h2 {
+  font-size:27px;
+  margin:0;
+  color:var(--gold-light);
+}
+
+/* SECTIONS */
+
+.panel {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:23px;
+  margin-bottom:25px;
+}
+
+.panel-heading {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.panel-heading h2 {
+  font-family:'Bricolage Grotesque',sans-serif;
+  margin:0;
+  font-size:22px;
+}
+
+.panel-heading h2 span {color:var(--gold)}
+
+.form-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:15px;
+}
+
+.form-grid label {margin:0}
+
+.form-actions {
+  display:flex;
+  align-items:end;
+}
+
+/* PRODUCT TABLE */
+
+.search-row {
+  display:grid;
+  grid-template-columns:1fr 190px;
+  gap:12px;
+  margin-bottom:17px;
+}
+
+.table-wrap {
+  overflow-x:auto;
+  width:100%;
+}
+
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:700px;
+  font-size:13px;
+}
+
+th,td {
+  padding:13px 12px;
+  border-bottom:1px solid #333;
+  text-align:left;
+}
+
+th {
+  color:var(--gold);
+  background:#202020;
+  font-weight:700;
+}
+
+td {color:#ddd}
+
+.product-img {
+  width:48px;
+  height:48px;
+  object-fit:cover;
+  border-radius:8px;
+  background:#292929;
+}
+
+.stock {
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.available {background:#123d29;color:#6de2a3}
+.unavailable {background:#4b1e1e;color:#ff9292}
+
+/* ENQUIRIES */
+
+.status {
+  padding:5px 9px;
+  border-radius:20px;
+  background:#39301a;
+  color:var(--gold-light);
+  font-size:11px;
+}
+
+.empty {
+  color:#999;
+  text-align:center;
+  padding:30px;
+}
+
+/* TOAST */
+
+.toast {
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#1c1c1c;
+  color:white;
+  padding:13px 20px;
+  border:1px solid var(--gold);
+  border-radius:30px;
+  display:none;
+  z-index:999;
+  box-shadow:0 5px 25px #000;
+}
+
+/* FOOTER */
+
+footer {
+  background:#050505;
+  border-top:1px solid #292929;
+  padding:30px 0;
+  text-align:center;
+  color:#aaa;
+  line-height:2;
+}
+
+footer a {color:var(--gold);text-decoration:none}
+
+@media(max-width:700px) {
+  .header-content {
+    flex-direction:column;
+  }
+
+  nav {justify-content:center}
+
+  nav a {font-size:11px;padding:9px}
+
+  .panel {padding:15px}
+
+  .search-row {grid-template-columns:1fr}
+
+  .login-box {padding:25px 18px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stripe"></div>
+
+<header>
+<div class="wrap header-content">
+
+  <div class="brand-area">
+    <img src="logo.jpeg" alt="RasOwuraku Logo">
+    <div class="brand">Ras<span>Owuraku</span> iPhones</div>
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="swap.html">Buy & Swap</a>
+    <a href="repair.html">Repairs</a>
+    <a href="installments.html">Installments</a>
+    <a href="contact.html">WhatsApp</a>
+    <a href="admin.html" class="active">Admin</a>
+  </nav>
+
+</div>
+</header>
+
+<!-- LOGIN SCREEN -->
+
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+
+    <img src="logo.jpeg" alt="RasOwuraku">
+
+    <h1>Admin Login</h1>
+
+    <p>
+      Welcome to the RasOwuraku iPhones management dashboard.
+      Enter your administrator password to continue.
+    </p>
+
+    <form id="loginForm">
+
+      <label>
+        Administrator Password
+        <input type="password" id="adminPassword"
+        placeholder="Enter password" required autocomplete="current-password">
+      </label>
+
+      <button class="btn gold full" type="submit">
+        Unlock Dashboard
+      </button>
+
+      <p id="loginError" style="color:#ff7777"></p>
+
+    </form>
+
+    <small style="color:#777">
+      Demo password: vannyspark
+    </small>
+
+  </div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
+
+<main id="dashboard" hidden>
+<div class="wrap">
+
+  <div class="welcome">
+    <div>
+      <h1>Admin <span>Dashboard</span></h1>
+      <p>Manage your iPhone business from one place.</p>
+    </div>
+
+    <button class="btn red" id="logoutBtn">Logout</button>
+  </div>
+
+  <!-- STATISTICS -->
+
+  <div class="stats">
+
+    <div class="stat">
+      <div class="icon">📱</div>
+      <p>Total Products</p>
+      <h2 id="totalProducts">0</h2>
+    </div>
+
+    <div class="stat">
+      <div class="icon">✅</div>
+      <p>Available Stock</p>
+      <h2 id="availableProducts">0</h2>
+    </div>
+
+    <div class="stat">
+      <div class="icon">📩</div>
+      <p>Customer Enquiries</p>
+      <h2 id="totalEnquiries">0</h2>
+    </div>
+
+    <div class="stat">
+      <div class="icon">💰</div>
+      <p>Total Stock Value</p>
+      <h2 id="stockValue">GH₵0</h2>
+    </div>
+
+  </div>
+
+  <!-- ADD PRODUCT -->
+
+  <section class="panel">
+
+    <div class="panel-heading">
+      <h2>Add <span>New iPhone</span></h2>
+    </div>
+
+    <form id="productForm">
+
+      <input type="hidden" id="editId">
+
+      <div class="form-grid">
+
+        <label>
+          iPhone Model
+          <input id="model" placeholder="e.g. iPhone 15 Pro Max" required>
+        </label>
+
+        <label>
+          Storage
+          <select id="storage" required>
+            <option value="">Select storage</option>
+            <option>64GB</option>
+            <option>128GB</option>
+            <option>256GB</option>
+            <option>512GB</option>
+            <option>1TB</option>
+            <option>2TB</option>
+          </select>
+        </label>
+
+        <label>
+          Colour
+          <input id="colour" placeholder="e.g. Natural Titanium" required>
+        </label>
+
+        <label>
+          Price (GH₵)
+          <input type="number" id="price" min="0" step="0.01" placeholder="2300" required>
+        </label>
+
+        <label>
+          Stock Quantity
+          <input type="number" id="quantity" min="0" value="1" required>
+        </label>
+
+        <label>
+          Product Photo
+          <input type="file" id="photo" accept="image/*">
+        </label>
+
+        <label>
+          Product Image URL (optional)
+          <input type="url" id="photoUrl" placeholder="https://example.com/iphone.jpg">
+        </label>
+
+        <label>
+          Product Condition
+          <select id="condition">
+            <option>Brand New</option>
+            <option>UK Used</option>
+            <option>Refurbished</option>
+          </select>
+        </label>
+
+      </div>
+
+      <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+
+        <button class="btn gold" type="submit" id="saveProductBtn">
+          Add Product
+        </button>
+
+        <button class="btn" type="button" id="cancelEdit" hidden>
+          Cancel Edit
+        </button>
+
+      </div>
+
+    </form>
+
+    <p style="color:#888;font-size:12px;margin-top:15px">
+      Product images are stored in this browser. Keep uploaded photos
+      reasonably small to avoid browser storage limits.
+    </p>
+
+  </section>
+
+  <!-- PRODUCT MANAGEMENT -->
+
+  <section class="panel">
+
+    <div class="panel-heading">
+      <h2>Manage <span>Products</span></h2>
+      <button class="btn" id="exportProducts">Export Products</button>
+    </div>
+
+    <div class="search-row">
+      <input type="search" id="productSearch" placeholder="Search iPhone model...">
+
+      <select id="stockFilter">
+        <option value="all">All products</option>
+        <option value="available">In stock</option>
+        <option value="unavailable">Out of stock</option>
+      </select>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Photo</th>
+            <th>Model</th>
+            <th>Storage</th>
+            <th>Colour</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Condition</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody id="productRows"></tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- CUSTOMER ENQUIRIES -->
+
+  <section class="panel">
+
+    <div class="panel-heading">
+      <h2>Customer <span>Enquiries</span></h2>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" id="exportEnquiries">Export Enquiries</button>
+        <button class="btn red" id="clearEnquiries">Clear All</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Phone</th>
+            <th>Enquiry Type</th>
+            <th>Details</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody id="enquiryRows"></tbody>
+      </table>
+    </div>
+
+    <p style="color:#888;font-size:12px">
+      Enquiries will appear here only if your website forms save them
+      using the same browser storage key.
+    </p>
+
+  </section>
+
+  <!-- SETTINGS -->
+
+  <section class="panel">
+
+    <div class="panel-heading">
+      <h2>Dashboard <span>Settings</span></h2>
+    </div>
+
+    <p style="color:#aaa;font-size:14px;line-height:1.7">
+      This demo dashboard uses browser storage. It is suitable for
+      testing and demonstration, not for protecting real customer
+      information or managing a live business across multiple devices.
+    </p>
+
+    <button class="btn red" id="clearProducts">
+      Delete All Products
+    </button>
+
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="stripe" style="margin-bottom:20px"></div>
+    <b style="color:white">RasOwuraku iPhones</b><br>
+    ADUM PZ, Pat Thomas Building, 2nd Floor<br>
+    Call / WhatsApp:
+    <a href="tel:+233241719370">+233 241719370</a><br>
+    Your iPhone Partner for Life.
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ==========================================
+   RASOWURAKU ADMIN DASHBOARD
+   Browser-storage demonstration version
+========================================== */
+
+const PRODUCT_KEY = "rasowuraku_products";
+const ENQUIRY_KEY = "rasowuraku_enquiries";
+
+// Demo only: do not use a client-side password
+// as real production authentication.
+const ADMIN_PASSWORD = "12345";
+
+let products = loadData(PRODUCT_KEY, []);
+let enquiries = loadData(ENQUIRY_KEY, []);
+
+const $ = id => document.getElementById(id);
+
+function loadData(key, fallback) {
+  try {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function saveProducts() {
+  try {
+    localStorage.setItem(PRODUCT_KEY, JSON.stringify(products));
+    return true;
+  } catch (error) {
+    showToast("Storage full. Use smaller product images.");
+    return false;
+  }
+}
+
+function saveEnquiries() {
+  try {
+    localStorage.setItem(ENQUIRY_KEY, JSON.stringify(enquiries));
+    return true;
+  } catch {
+    showToast("Could not save enquiries.");
+    return false;
+  }
+}
+
+function showToast(message) {
+  const toast = $("toast");
+  toast.textContent = message;
+  toast.style.display = "block";
+
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 3000);
+}
+
+function money(value) {
+  return "GH₵" + Number(value).toLocaleString("en-GH", {
+    minimumFractionDigits:2,
+    maximumFractionDigits:2
+  });
+}
+
+/* LOGIN */
+
+$("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  if ($("adminPassword").value === ADMIN_PASSWORD) {
+    $("loginScreen").hidden = true;
+    $("dashboard").hidden = false;
+    renderAll();
+    showToast("Welcome to your dashboard!");
+  } else {
+    $("loginError").textContent = "Incorrect password. Try again.";
+  }
+});
+
+$("logoutBtn").addEventListener("click", function() {
+  $("dashboard").hidden = true;
+  $("loginScreen").hidden = false;
+  $("adminPassword").value = "";
+  $("loginError").textContent = "";
+});
+
+/* PRODUCT FORM */
+
+$("productForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const id = $("editId").value;
+  const existing = products.find(p => p.id === id);
+
+  const file = $("photo").files[0];
+  let image = existing?.image || "";
+
+  if ($("photoUrl").value.trim()) {
+    image = $("photoUrl").value.trim();
+  } else if (file) {
+    if (!file.type.startsWith("image/")) {
+      showToast("Please select an image.");
+      return;
+    }
+
+    if (file.size > 1500 * 1024) {
+      showToast("Image too large. Use an image under 1.5MB.");
+      return;
+    }
+
+    try {
+      image = await readImage(file);
+    } catch {
+      showToast("Could not read the image.");
+      return;
+    }
+  }
+
+  const product = {
+    id: id || (
+      window.crypto && crypto.randomUUID
+        ? crypto.randomUUID()
+        : Date.now().toString()
+    ),
+    name: $("model").value.trim(),
+    storage: $("storage").value,
+    color: $("colour").value.trim(),
+    price: Number($("price").value),
+    quantity: Number($("quantity").value),
+    condition: $("condition").value,
+    image: image,
+    updatedAt: new Date().toISOString()
+  };
+
+  if (!product.name || !product.storage || !product.color ||
+      !Number.isFinite(product.price) || product.price < 0 ||
+      !Number.isInteger(product.quantity) || product.quantity < 0) {
+    showToast("Please enter valid product details.");
+    return;
+  }
+
+  if (id) {
+    products = products.map(p => p.id === id ? product : p);
+  } else {
+    products.unshift(product);
+  }
+
+  if (!saveProducts()) return;
+
+  resetForm();
+  renderAll();
+  showToast(id ? "Product updated successfully!" : "iPhone added successfully!");
+});
+
+function readImage(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function resetForm() {
+  $("productForm").reset();
+  $("editId").value = "";
+  $("quantity").value = 1;
+  $("saveProductBtn").textContent = "Add Product";
+  $("cancelEdit").hidden = true;
+}
+
+$("cancelEdit").addEventListener("click", resetForm);
+
+/* DISPLAY PRODUCTS */
+
+function renderProducts() {
+  const search = $("productSearch").value.toLowerCase();
+  const filter = $("stockFilter").value;
+
+  const filtered = products.filter(p => {
+    const text = `${p.name} ${p.storage} ${p.color}`.toLowerCase();
+
+    const matchesSearch = text.includes(search);
+
+    const matchesStock =
+      filter === "all" ||
+      (filter === "available" && p.quantity > 0) ||
+      (filter === "unavailable" && p.quantity <= 0);
+
+    return matchesSearch && matchesStock;
+  });
+
+  const rows = $("productRows");
+
+  if (!filtered.length) {
+    rows.innerHTML = `<tr><td colspan="8" class="empty">No products found.</td></tr>`;
+    return;
+  }
+
+  rows.innerHTML = filtered.map(p => `
+    <tr>
+      <td>
+        ${
+          p.image
+          ? `<img class="product-img" src="${escapeHTML(p.image)}" alt="">`
+          : "📱"
+        }
+      </td>
+      <td>${escapeHTML(p.name)}</td>
+      <td>${escapeHTML(p.storage)}</td>
+      <td>${escapeHTML(p.color)}</td>
+      <td>${money(p.price)}</td>
+      <td>
+        <span class="stock ${p.quantity > 0 ? "available" : "unavailable"}">
+          ${p.quantity}
+        </span>
+      </td>
+      <td>${escapeHTML(p.condition)}</td>
+      <td>
+        <button class="btn small" data-action="edit" data-id="${escapeHTML(p.id)}">Edit</button>
+        <button class="btn small red" data-action="delete" data-id="${escapeHTML(p.id)}">Delete</button>
+      </td>
+    </tr>
+  `).join("");
+}
+
+$("productRows").addEventListener("click", function(e) {
+  const button = e.target.closest("button[data-action]");
+  if (!button) return;
+
+  const id = button.dataset.id;
+  const action = button.dataset.action;
+  const product = products.find(p => p.id === id);
+
+  if (!product) return;
+
+  if (action === "edit") {
+    $("editId").value = product.id;
+    $("model").value = product.name;
+    $("storage").value = product.storage;
+    $("colour").value = product.color;
+    $("price").value = product.price;
+    $("quantity").value = product.quantity;
+    $("condition").value = product.condition;
+    $("photoUrl").value = product.image.startsWith("data:") ? "" : product.image;
+
+    $("saveProductBtn").textContent = "Save Changes";
+    $("cancelEdit").hidden = false;
+
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+
+  if (action === "delete") {
+    if (!confirm(`Delete ${product.name}?`)) return;
+
+    products = products.filter(p => p.id !== id);
+    saveProducts();
+    renderAll();
+    showToast("Product deleted.");
+  }
+});
+
+/* SEARCH */
+
+$("productSearch").addEventListener("input", renderProducts);
+$("stockFilter").addEventListener("change", renderProducts);
+
+/* ENQUIRIES */
+
+function renderEnquiries() {
+  const rows = $("enquiryRows");
+
+  if (!enquiries.length) {
+    rows.innerHTML = `<tr><td colspan="7" class="empty">No customer enquiries recorded.</td></tr>`;
+    return;
+  }
+
+  rows.innerHTML = enquiries.map(e => `
+    <tr>
+      <td>${escapeHTML(e.date || "")}</td>
+      <td>${escapeHTML(e.name || "Customer")}</td>
+      <td>${escapeHTML(e.phone || "")}</td>
+      <td>${escapeHTML(e.type || "General")}</td>
+      <td>${escapeHTML(e.details || "")}</td>
+      <td><span class="status">${escapeHTML(e.status || "New")}</span></td>
+      <td>
+        <button class="btn small" data-enquiry-action="done" data-id="${escapeHTML(e.id)}">Mark Done</button>
+        <button class="btn small red" data-enquiry-action="delete" data-id="${escapeHTML(e.id)}">Delete</button>
+      </td>
+    </tr>
+  `).join("");
+}
+
+$("enquiryRows").addEventListener("click", function(e) {
+  const button = e.target.closest("button[data-enquiry-action]");
+  if (!button) return;
+
+  const id = button.dataset.id;
+  const action = button.dataset.enquiryAction;
+
+  if (action === "done") {
+    enquiries = enquiries.map(item =>
+      item.id === id ? {...item,status:"Completed"} : item
+    );
+  }
+
+  if (action === "delete") {
+    if (!confirm("Delete this enquiry?")) return;
+    enquiries = enquiries.filter(item => item.id !== id);
+  }
+
+  saveEnquiries();
+  renderAll();
+});
+
+/* DASHBOARD STATS */
+
+function renderStats() {
+  $("totalProducts").textContent = products.length;
+
+  $("availableProducts").textContent =
+    products.filter(p => p.quantity > 0).length;
+
+  $("totalEnquiries").textContent = enquiries.length;
+
+  const total = products.reduce(
+    (sum,p) => sum + Number(p.price) * Number(p.quantity),
+    0
+  );
+
+  $("stockValue").textContent = money(total);
+}
+
+/* EXPORT */
+
+function downloadCSV(filename, rows) {
+  if (!rows.length) {
+    showToast("There is nothing to export.");
+    return;
+  }
+
+  const csv = rows.map(row =>
+    row.map(value =>
+      '"' + String(value ?? "").replace(/"/g,'""') + '"'
+    ).join(",")
+  ).join("\r\n");
+
+  const blob = new Blob(["\uFEFF" + csv], {
+    type:"text/csv;charset=utf-8;"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+$("exportProducts").addEventListener("click", () => {
+  downloadCSV("rasowuraku-products.csv",[
+    ["Model","Storage","Colour","Price","Quantity","Condition"],
+    ...products.map(p => [
+      p.name,p.storage,p.color,p.price,p.quantity,p.condition
+    ])
+  ]);
+});
+
+$("exportEnquiries").addEventListener("click", () => {
+  downloadCSV("rasowuraku-enquiries.csv",[
+    ["Date","Name","Phone","Type","Details","Status"],
+    ...enquiries.map(e => [
+      e.date,e.name,e.phone,e.type,e.details,e.status
+    ])
+  ]);
+});
+
+/* CLEAR DATA */
+
+$("clearProducts").addEventListener("click", () => {
+  if (!confirm("Delete ALL products? This cannot be undone.")) return;
+
+  products = [];
+  saveProducts();
+  renderAll();
+  showToast("All products deleted.");
+});
+
+$("clearEnquiries").addEventListener("click", () => {
+  if (!confirm("Delete ALL enquiries? This cannot be undone.")) return;
+
+  enquiries = [];
+  saveEnquiries();
+  renderAll();
+  showToast("All enquiries cleared.");
+});
+
+/* HTML SAFETY */
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  })[char]);
+}
+
+/* INITIAL DISPLAY */
+
+function renderAll() {
+  renderStats();
+  renderProducts();
+  renderEnquiries();
+}
+</script>
+
+</body>
+</html>

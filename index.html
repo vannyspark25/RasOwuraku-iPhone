@@ -1,0 +1,640 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="RasOwuraku iPhones — Buy, sell, swap, repair and pay for iPhones in installments. Visit us at Adum PZ, Pat Thomas Building, 2nd Floor.">
+<title>RasOwuraku iPhones | Your iPhone Partner for Life</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+:root {
+  --gold: #d9ad45;
+  --gold-light: #f8d982;
+  --black: #080808;
+  --dark: #111111;
+  --white: #ffffff;
+  --muted: #aaa;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.stripe {
+  height: 4px;
+  background: linear-gradient(90deg,#d9ad45,#e5e5e5,#d9ad45);
+}
+
+.wrap {
+  width: min(1180px, 92%);
+  margin: auto;
+}
+
+/* HEADER */
+
+header {
+  background: rgba(8,8,8,.97);
+  border-bottom: 1px solid rgba(217,173,69,.25);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(15px);
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 0 12px;
+}
+
+.logo-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+
+.logo-center img {
+  width: 105px;
+  height: 105px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 25px rgba(217,173,69,.25);
+}
+
+.brand-name {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  text-align: center;
+}
+
+.brand-name span { color: var(--gold); }
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #ddd;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 13px;
+  border-radius: 25px;
+  transition: .3s;
+}
+
+nav a:hover,
+nav a[aria-current="page"] {
+  color: #080808;
+  background: var(--gold);
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 75px 0;
+  background:
+    radial-gradient(circle at 50% 20%,rgba(217,173,69,.14),transparent 40%),
+    linear-gradient(135deg,#080808,#171717 60%,#080808);
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 850px;
+  margin: auto;
+}
+
+.hero-logo {
+  width: 165px;
+  height: 165px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 45px rgba(217,173,69,.2);
+}
+
+.hero h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(36px,6vw,65px);
+  line-height: 1.05;
+  margin: 0 0 15px;
+  font-weight: 800;
+}
+
+.hero h1 span {
+  display: block;
+  color: var(--gold);
+  font-size: clamp(18px,3vw,27px);
+  margin-top: 14px;
+}
+
+.hero-description {
+  color: #c2c2c2;
+  max-width: 650px;
+  margin: 18px auto;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.tags {
+  color: var(--gold-light);
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.loc {
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* BUTTONS */
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 13px;
+  margin-top: 28px;
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 13px 23px;
+  border-radius: 30px;
+  border: 1px solid var(--gold);
+  color: white;
+  font-weight: 700;
+  font-size: 14px;
+  transition: .3s;
+}
+
+.btn.gold {
+  background: linear-gradient(135deg,#f2d17d,#c4932e);
+  color: #111;
+  border: none;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 25px rgba(217,173,69,.2);
+}
+
+/* SECTIONS */
+
+section {
+  padding: 65px 0;
+}
+
+section h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  text-align: center;
+  font-size: clamp(27px,4vw,38px);
+  margin: 0 0 10px;
+}
+
+section h2 span { color: var(--gold); }
+
+.sub {
+  text-align: center;
+  color: #aaa;
+  margin-bottom: 35px;
+}
+
+/* SERVICE CARDS */
+
+#homeCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 20px;
+}
+
+.service-card {
+  background: linear-gradient(145deg,#191919,#101010);
+  border: 1px solid rgba(217,173,69,.22);
+  border-radius: 17px;
+  padding: 25px;
+  text-align: center;
+  transition: .3s;
+}
+
+.service-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--gold);
+  box-shadow: 0 10px 30px rgba(217,173,69,.1);
+}
+
+.service-card .service-icon {
+  font-size: 35px;
+  margin-bottom: 13px;
+}
+
+.service-card h3 {
+  color: var(--gold);
+  margin: 8px 0;
+}
+
+.service-card p {
+  color: #aaa;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.service-card a {
+  display: inline-block;
+  color: var(--gold-light);
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+/* WHY CHOOSE US */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+  gap: 18px;
+}
+
+.why-item {
+  background: #141414;
+  border-radius: 13px;
+  padding: 22px;
+  border-left: 3px solid var(--gold);
+}
+
+.why-item h3 { color: var(--gold); }
+.why-item p { color: #aaa; line-height: 1.7; font-size: 14px; }
+
+/* REVIEWS */
+
+#reviews { background: #101010; }
+
+#reviews .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 20px;
+}
+
+.rev {
+  background: #191919;
+  padding: 24px;
+  border: 1px solid #333;
+  border-radius: 15px;
+}
+
+.stars { color: var(--gold); letter-spacing: 3px; }
+
+.rev p {
+  color: #ccc;
+  line-height: 1.7;
+}
+
+.rev b { color: var(--gold-light); }
+
+/* FOOTER */
+
+footer {
+  background: #050505;
+  border-top: 1px solid rgba(217,173,69,.3);
+  padding: 40px 0;
+  text-align: center;
+  color: #aaa;
+  line-height: 2;
+}
+
+footer b { color: white; }
+footer a { color: var(--gold); text-decoration: none; }
+
+.footer-logo {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+/* WHATSAPP FLOATING BUTTON */
+
+.fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+  background: #159b53;
+  border: none;
+  color: white;
+  box-shadow: 0 5px 20px #000;
+}
+
+@media(max-width:600px) {
+  .logo-center img {
+    width: 85px;
+    height: 85px;
+  }
+
+  nav { gap: 3px; }
+
+  nav a {
+    font-size: 11px;
+    padding: 9px 10px;
+  }
+
+  .hero { padding: 50px 0; }
+
+  .hero-logo {
+    width: 130px;
+    height: 130px;
+  }
+
+  .cta .btn { width: 100%; }
+
+  section { padding: 45px 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="stripe"></div>
+
+<header>
+  <div class="wrap header-content">
+
+    <!-- CENTRED LOGO -->
+    <a href="index.html" class="logo-center">
+      <img src="logo.jpeg" alt="RasOwuraku iPhones Logo">
+    </a>
+
+    <div class="brand-name">Ras<span>Owuraku</span> iPhones</div>
+
+    <nav aria-label="Main navigation">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="swap.html">Buy &amp; Swap</a>
+      <a href="repair.html">Repairs</a>
+      <a href="installments.html">Installments</a>
+      <a href="contact.html">WhatsApp</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+<!-- HERO SECTION -->
+<div class="hero">
+  <div class="wrap hero-content">
+
+    <img src="logo.jpeg" alt="RasOwuraku brand logo" class="hero-logo">
+
+    <h1>
+      Welcome to RasOwuraku iPhones
+      <span>Your iPhone Partner for Life.</span>
+    </h1>
+
+    <p class="hero-description">
+      Looking for a genuine iPhone or planning to upgrade your current device?
+      RasOwuraku makes it easy. We sell, buy, swap and repair iPhones,
+      with flexible installment plans designed to make owning your dream
+      iPhone easier.
+    </p>
+
+    <p class="tags">
+      BUY &nbsp; • &nbsp; SELL &nbsp; • &nbsp; SWAP &nbsp; • &nbsp; FIX
+      &nbsp; • &nbsp; INSTALLMENT PLANS
+    </p>
+
+    <p class="loc">
+      📍 Adum PZ, Pat Thomas Building, 2nd Floor
+    </p>
+
+    <div class="cta">
+      <a class="btn gold" href="shop.html">Explore iPhones</a>
+
+      <a class="btn"
+         href="https://wa.me/233241719370"
+         target="_blank" rel="noopener">
+         Chat on WhatsApp
+      </a>
+
+      <a class="btn" href="tel:+233241719370">
+        Call Us
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section>
+  <div class="wrap">
+
+    <h2>Our <span>Services</span></h2>
+    <p class="sub">Everything you need for your iPhone, all in one place.</p>
+
+    <div id="homeCards">
+
+      <div class="service-card">
+        <div class="service-icon">🛒</div>
+        <h3>Buy iPhones</h3>
+        <p>Explore our available iPhone models and find the perfect device for your needs.</p>
+        <a href="shop.html">Shop Now →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Sell Your iPhone</h3>
+        <p>Want to sell your old iPhone? Contact us for a competitive offer.</p>
+        <a href="swap.html">Sell Your Phone →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <h3>Swap iPhones</h3>
+        <p>Upgrade your device by swapping your current iPhone for another model.</p>
+        <a href="swap.html">Swap Now →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>iPhone Repairs</h3>
+        <p>Get assistance with damaged screens, batteries and other iPhone problems.</p>
+        <a href="repair.html">Request Repair →</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">💳</div>
+        <h3>Installment Plans</h3>
+        <p>Own your dream iPhone through our flexible installment arrangements.</p>
+        <a href="installments.html">Learn More →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section style="background:#101010">
+  <div class="wrap">
+
+    <h2>Why Choose <span>RasOwuraku?</span></h2>
+    <p class="sub">A better experience when buying, selling or upgrading your iPhone.</p>
+
+    <div class="why-grid">
+
+      <div class="why-item">
+        <h3>✓ Quality Devices</h3>
+        <p>Get clear information about the condition and specifications of available devices.</p>
+      </div>
+
+      <div class="why-item">
+        <h3>✓ Flexible Payments</h3>
+        <p>Ask us about installment options and payment arrangements.</p>
+      </div>
+
+      <div class="why-item">
+        <h3>✓ Easy Upgrades</h3>
+        <p>Trade in your current iPhone and explore available upgrade options.</p>
+      </div>
+
+      <div class="why-item">
+        <h3>✓ Customer Support</h3>
+        <p>Reach us easily through WhatsApp or phone for assistance.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="wrap">
+
+    <h2>Customer <span>Reviews</span></h2>
+    <p class="sub">Your satisfaction is our priority.</p>
+
+    <div class="grid">
+
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <p>Great customer service and a smooth buying experience.</p>
+        <b>Customer Review</b>
+      </div>
+
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <p>Helpful advice when choosing an iPhone. I had a good experience.</p>
+        <b>Customer Review</b>
+      </div>
+
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <p>Professional service and good communication throughout.</p>
+        <b>Customer Review</b>
+      </div>
+
+    </div>
+    <p class="sub" style="font-size:12px;margin-top:20px">
+      Replace these sample reviews with genuine customer feedback before publishing.
+    </p>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section>
+  <div class="wrap" style="text-align:center">
+
+    <h2>Ready to Get Your <span>iPhone?</span></h2>
+
+    <p class="sub">
+      Contact RasOwuraku today. Let's help you find your next iPhone.
+    </p>
+
+    <div class="cta">
+      <a class="btn gold"
+         href="https://wa.me/233241719370"
+         target="_blank" rel="noopener">
+         WhatsApp Us
+      </a>
+
+      <a class="btn" href="tel:+233241719370">
+        Call +233 241719370
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+
+    <img src="logo1.jpeg" alt="RasOwuraku logo" class="footer-logo">
+
+    <br>
+    <b>RasOwuraku iPhones</b>
+
+    <br>
+    ADUM PZ, Pat Thomas Building, 2nd Floor
+
+    <br>
+    Call / WhatsApp:
+    <a href="tel:+233241719370">+233 241719370</a>
+
+    <br>
+    <a href="https://wa.me/233241719370" target="_blank" rel="noopener">
+      Chat with us on WhatsApp
+    </a>
+
+    <br><br>
+    <span style="color:#d9ad45">Your iPhone Partner for Life.</span>
+
+    <br>
+    <small>© <span id="year"></span> RasOwuraku iPhones. All rights reserved.</small>
+
+  </div>
+</footer>
+
+<a class="btn fab"
+   href="https://wa.me/233241719370"
+   target="_blank" rel="noopener"
+   aria-label="Chat on WhatsApp">
+   WhatsApp
+</a>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script src="app.js"></script>
+
+</body>
+</html>

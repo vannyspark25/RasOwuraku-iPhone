@@ -1,0 +1,476 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<meta name="description" content="RasOwuraku iPhones: buy, sell, swap, repair and pay in installments. Adum PZ, Pat Thomas Building, 2nd Floor.">
+
+<meta name="theme-color" content="#101820">
+
+<title>WhatsApp & Social Media | RasOwuraku iPhones</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+/* SOCIAL MEDIA SECTION */
+
+.social-section {
+    padding: 85px 20px;
+    background: linear-gradient(145deg, #101820, #17252d, #101820);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 45px;
+}
+
+.social-tag {
+    display: inline-block;
+    color: #d4a937;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.social-heading h2 {
+    color: #fff;
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.social-heading h2 span {
+    background: linear-gradient(90deg, #d4a937, #ff7043);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.social-heading p {
+    color: #aeb9c0;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.social-grid {
+    max-width: 950px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.social-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 23px;
+    min-height: 105px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 18px;
+    background: rgba(255,255,255,.045);
+    text-decoration: none;
+    color: white;
+    transition: .35s ease;
+}
+
+.social-card:hover {
+    transform: translateY(-7px);
+    border-color: var(--social-color);
+    background: rgba(255,255,255,.09);
+    box-shadow: 0 12px 30px rgba(0,0,0,.25);
+}
+
+.social-icon {
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    display: grid;
+    place-items: center;
+    font-size: 30px;
+    font-weight: 800;
+    color: white;
+    background: var(--social-color);
+}
+
+.social-card h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+}
+
+.social-card p {
+    color: #aeb9c0;
+    font-size: 12px;
+    margin: 0;
+}
+
+.social-arrow {
+    margin-left: auto;
+    color: #d4a937;
+    font-size: 23px;
+    transition: .3s;
+}
+
+.social-card:hover .social-arrow {
+    transform: translate(4px, -4px);
+}
+
+.tiktok {
+    --social-color: #e72d68;
+}
+
+.instagram {
+    --social-color: #c13584;
+}
+
+.twitter {
+    --social-color: #242424;
+}
+
+.facebook {
+    --social-color: #1877f2;
+}
+
+.telegram {
+    --social-color: #229ed9;
+}
+
+.social-bottom {
+    text-align: center;
+    margin-top: 40px;
+    color: #aeb9c0;
+    font-size: 13px;
+}
+
+.social-bottom span {
+    font-size: 25px;
+}
+
+.social-bottom p {
+    margin-top: 8px;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media(max-width: 600px) {
+
+    .social-section {
+        padding: 60px 15px;
+    }
+
+    .social-grid {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .social-card {
+        padding: 18px;
+        min-height: 90px;
+    }
+
+    .social-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 25px;
+    }
+
+    .social-heading p {
+        font-size: 14px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- DECORATIVE STRIPE -->
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<linearGradient id="wp" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0" stop-color="#d4a937"/>
+<stop offset=".5" stop-color="#d62d2d"/>
+<stop offset="1" stop-color="#0a9a4a"/>
+</linearGradient>
+
+<linearGradient id="gr" x1="0" y1="1" x2="0" y2="0">
+<stop offset="0" stop-color="#0a9a4a"/>
+<stop offset="1" stop-color="#d4a937"/>
+</linearGradient>
+</defs>
+</svg>
+
+<div class="stripe"></div>
+
+<!-- HEADER -->
+
+<header>
+<div class="wrap">
+
+<a class="logo" href="index.html">
+RasOwuraku <b>iPhones</b>
+</a>
+
+<nav aria-label="Main">
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="swap.html">Buy &amp; swap</a>
+<a href="repair.html">Repairs</a>
+<a href="installments.html">Installments</a>
+<a href="contact.html" aria-current="page">WhatsApp</a>
+<a href="admin.html">Admin</a>
+</nav>
+
+</div>
+</header>
+
+<!-- MAIN CONTENT -->
+
+<main>
+
+<!-- WHATSAPP SECTION -->
+
+<section>
+<div class="wrap">
+
+<div style="border-top:0" class="feat flip" id="chat">
+
+<div>
+
+<h2>Order and get support on WhatsApp</h2>
+
+<p class="sub">
+Order a phone, ask a question, book a repair or follow up on a swap.
+One chat, one number, real people replying.
+</p>
+
+<a class="btn"
+id="chatWa"
+href="https://wa.me/233241719370"
+target="_blank"
+rel="noopener">
+
+Open WhatsApp +233 241719370
+
+</a>
+
+</div>
+
+<div class="art"
+id="art-chat"
+role="img"
+aria-label="iPhone showing a WhatsApp chat">
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- SOCIAL MEDIA SECTION -->
+
+<section class="social-section">
+
+<div class="wrap">
+
+<div class="social-heading">
+
+<span class="social-tag">STAY CONNECTED</span>
+
+<h2>
+Follow <span>RasOwuraku</span>
+</h2>
+
+<p>
+Connect with us on social media for the latest iPhone arrivals,
+exclusive offers, amazing deals, customer reviews, phone
+repairs and exciting updates.
+</p>
+
+</div>
+
+
+<div class="social-grid">
+
+
+<!-- TIKTOK -->
+
+<a href="https://www.tiktok.com/@rasowuraku"
+target="_blank"
+rel="noopener"
+class="social-card tiktok">
+
+<div class="social-icon">♪</div>
+
+<div>
+<h3>TikTok</h3>
+<p>@rasowuraku</p>
+</div>
+
+<span class="social-arrow">↗</span>
+
+</a>
+
+
+<!-- INSTAGRAM -->
+
+<a href="https://www.instagram.com/rasnanaowuraku/"
+target="_blank"
+rel="noopener"
+class="social-card instagram">
+
+<div class="social-icon">◎</div>
+
+<div>
+<h3>Instagram</h3>
+<p>@rasnanaowuraku</p>
+</div>
+
+<span class="social-arrow">↗</span>
+
+</a>
+
+
+<!-- X / TWITTER -->
+
+<a href="https://x.com/owuraku_ras"
+target="_blank"
+rel="noopener"
+class="social-card twitter">
+
+<div class="social-icon">𝕏</div>
+
+<div>
+<h3>X (Twitter)</h3>
+<p>@owuraku_ras</p>
+</div>
+
+<span class="social-arrow">↗</span>
+
+</a>
+
+
+<!-- FACEBOOK - ADD LINK LATER -->
+
+<a href="#"
+class="social-card facebook"
+aria-label="Facebook link coming soon">
+
+<div class="social-icon">f</div>
+
+<div>
+<h3>Facebook</h3>
+<p>Facebook link coming soon</p>
+</div>
+
+<span class="social-arrow">↗</span>
+
+</a>
+
+
+<!-- TELEGRAM - ADD LINK LATER -->
+
+<a href="#"
+class="social-card telegram"
+aria-label="Telegram link coming soon">
+
+<div class="social-icon">➤</div>
+
+<div>
+<h3>Telegram</h3>
+<p>Telegram link coming soon</p>
+</div>
+
+<span class="social-arrow">↗</span>
+
+</a>
+
+
+</div>
+
+
+<div class="social-bottom">
+
+<span>📱</span>
+
+<p>
+One brand. Five platforms. Endless connections.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="wrap">
+
+<div class="stripe"
+style="margin-bottom:24px;border-radius:3px">
+</div>
+
+<b style="color:#fff">
+RasOwuraku iPhones
+</b>
+
+<br>
+
+ADUM PZ, Pat Thomas Building, 2nd Floor
+
+<br>
+
+Call / WhatsApp:
+
+<a href="tel:+233241719370">
++233 241719370
+</a>
+
+<br><br>
+
+Your Dream iPhone, Our Priority.
+
+</div>
+
+</footer>
+
+
+<!-- FLOATING WHATSAPP BUTTON -->
+
+<a class="btn fab"
+id="fab"
+href="https://wa.me/233241719370"
+target="_blank"
+rel="noopener"
+aria-label="Chat on WhatsApp">
+
+WhatsApp
+
+</a>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="app.js"></script>
+
+</body>
+</html>

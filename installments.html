@@ -1,0 +1,733 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080808">
+
+<meta name="description" content="Get your dream iPhone with RasOwuraku flexible installment payment plans.">
+
+<title>iPhone Installments | RasOwuraku</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --gold:#d9ad45;
+  --gold-light:#f6d987;
+  --black:#080808;
+  --dark:#121212;
+  --muted:#aaa;
+  --green:#159b53;
+}
+
+* {box-sizing:border-box}
+
+body {
+  margin:0;
+  background:var(--black);
+  color:white;
+  font-family:'DM Sans',sans-serif;
+}
+
+.stripe {
+  height:4px;
+  background:linear-gradient(90deg,#d9ad45,#fff,#d9ad45);
+}
+
+.wrap {
+  width:min(1150px,92%);
+  margin:auto;
+}
+
+/* HEADER */
+
+header {
+  background:#090909;
+  border-bottom:1px solid #292929;
+  position:sticky;
+  top:0;
+  z-index:100;
+}
+
+.header-content {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:14px 0;
+}
+
+.logo {
+  text-align:center;
+  text-decoration:none;
+  color:white;
+  margin-bottom:12px;
+}
+
+.logo img {
+  width:85px;
+  height:85px;
+  object-fit:contain;
+  border-radius:50%;
+  border:2px solid var(--gold);
+  box-shadow:0 0 20px #d9ad4533;
+}
+
+.brand {
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:23px;
+  font-weight:800;
+}
+
+.brand span {color:var(--gold)}
+
+nav {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:5px;
+}
+
+nav a {
+  text-decoration:none;
+  color:#ddd;
+  font-size:12px;
+  padding:10px 12px;
+  border-radius:25px;
+  font-weight:700;
+}
+
+nav a:hover,
+nav a.active {
+  background:var(--gold);
+  color:#080808;
+}
+
+/* HERO */
+
+.hero {
+  text-align:center;
+  padding:55px 15px 40px;
+  background:
+  radial-gradient(circle at center,rgba(217,173,69,.13),transparent 65%);
+}
+
+.hero h1 {
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:clamp(32px,5vw,52px);
+  margin:0;
+}
+
+.hero h1 span {color:var(--gold)}
+
+.hero p {
+  max-width:650px;
+  margin:15px auto;
+  color:#aaa;
+  line-height:1.8;
+}
+
+/* MAIN CALCULATOR */
+
+.calculator-section {
+  padding:25px 0 65px;
+}
+
+.calculator {
+  max-width:850px;
+  margin:auto;
+  background:linear-gradient(145deg,#181818,#0d0d0d);
+  border:1px solid #383838;
+  border-radius:22px;
+  padding:30px;
+  box-shadow:0 15px 45px #000;
+}
+
+.calculator h2 {
+  font-family:'Bricolage Grotesque',sans-serif;
+  color:var(--gold);
+  font-size:27px;
+  margin:0 0 8px;
+}
+
+.description {
+  color:#aaa;
+  font-size:14px;
+  line-height:1.7;
+  margin-bottom:25px;
+}
+
+label {
+  display:block;
+  font-weight:700;
+  font-size:14px;
+  margin-bottom:9px;
+  color:#eee;
+}
+
+input,select {
+  width:100%;
+  padding:15px;
+  border:1px solid #444;
+  border-radius:10px;
+  background:#090909;
+  color:white;
+  font-size:16px;
+  outline:none;
+}
+
+input:focus,select:focus {
+  border-color:var(--gold);
+}
+
+.field {
+  margin-bottom:22px;
+}
+
+.range-info {
+  display:flex;
+  justify-content:space-between;
+  color:var(--gold-light);
+  font-size:14px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+input[type=range] {
+  padding:0;
+  accent-color:var(--gold);
+  cursor:pointer;
+}
+
+/* RESULTS */
+
+.results {
+  margin-top:30px;
+  border:1px solid #55451e;
+  background:#10100e;
+  border-radius:16px;
+  padding:22px;
+}
+
+.results h3 {
+  color:var(--gold);
+  margin:0 0 20px;
+  font-size:20px;
+}
+
+.result-row {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 0;
+  border-bottom:1px solid #292929;
+  font-size:14px;
+}
+
+.result-row span:first-child {color:#aaa}
+
+.result-row strong {
+  text-align:right;
+  color:white;
+}
+
+.result-row.highlight strong {
+  color:var(--gold-light);
+  font-size:19px;
+}
+
+.result-row.total strong {
+  color:#65d99b;
+  font-size:19px;
+}
+
+.results small {
+  display:block;
+  margin-top:15px;
+  color:#999;
+  line-height:1.7;
+}
+
+/* FORMULA */
+
+.formula {
+  background:#191919;
+  padding:22px;
+  border-radius:14px;
+  margin-top:22px;
+  border-left:3px solid var(--gold);
+}
+
+.formula h3 {
+  color:var(--gold);
+  margin:0 0 12px;
+}
+
+.formula p {
+  font-size:14px;
+  color:#ccc;
+  line-height:1.8;
+  margin:6px 0;
+}
+
+/* BUTTONS */
+
+.actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:25px;
+}
+
+.btn {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:15px;
+  border-radius:30px;
+  text-decoration:none;
+  border:1px solid var(--gold);
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.btn.gold {
+  background:linear-gradient(135deg,#f5d47e,#c4932e);
+  color:#111;
+  border:none;
+}
+
+.btn.whatsapp {
+  background:#159b53;
+  border:none;
+}
+
+.btn:hover {opacity:.85}
+
+/* HOW IT WORKS */
+
+.how {
+  padding:55px 0;
+  background:#101010;
+}
+
+.how h2 {
+  text-align:center;
+  font-family:'Bricolage Grotesque',sans-serif;
+  font-size:30px;
+}
+
+.steps {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:18px;
+  margin-top:30px;
+}
+
+.step {
+  padding:23px;
+  background:#191919;
+  border-radius:14px;
+  border:1px solid #333;
+}
+
+.step b {
+  color:var(--gold);
+  font-size:18px;
+}
+
+.step p {
+  color:#aaa;
+  font-size:14px;
+  line-height:1.7;
+}
+
+/* FOOTER */
+
+footer {
+  padding:35px 0;
+  text-align:center;
+  color:#aaa;
+  line-height:2;
+  background:#050505;
+}
+
+footer a {color:var(--gold);text-decoration:none}
+
+footer b {color:white}
+
+.fab {
+  position:fixed;
+  bottom:20px;
+  right:18px;
+  background:#159b53;
+  color:white;
+  border:none;
+  z-index:99;
+  padding:13px 20px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+@media(max-width:600px) {
+  .calculator {padding:20px 15px}
+  .actions {grid-template-columns:1fr}
+  nav a {font-size:11px;padding:9px}
+  .result-row {font-size:13px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="stripe"></div>
+
+<header>
+  <div class="wrap header-content">
+
+    <a href="index.html" class="logo">
+      <img src="logo.jpeg" alt="RasOwuraku Logo">
+    </a>
+
+    <div class="brand">Ras<span>Owuraku</span> iPhones</div>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="swap.html">Buy & Swap</a>
+      <a href="repair.html">Repairs</a>
+      <a href="installments.html" class="active">Installments</a>
+      <a href="contact.html">WhatsApp</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <h1>Own Your Dream <span>iPhone</span></h1>
+
+  <p>
+    You don't have to pay everything at once.
+    Make a deposit, spread the remaining payment across
+    your selected weeks and get closer to owning your dream iPhone.
+  </p>
+</section>
+
+<section class="calculator-section">
+<div class="wrap">
+
+<div class="calculator">
+
+  <h2>Installment Payment Calculator</h2>
+
+  <p class="description">
+    Enter your iPhone price, select your deposit percentage
+    and choose your payment period. Your payment breakdown
+    will be calculated instantly.
+  </p>
+
+  <div class="field">
+    <label for="phone">Select iPhone</label>
+    <select id="phone">
+      <option value="2300">iPhone - GH₵2,300</option>
+      <option value="3000">iPhone - GH₵3,000</option>
+      <option value="4000">iPhone - GH₵4,000</option>
+      <option value="5000">iPhone - GH₵5,000</option>
+      <option value="6000">iPhone - GH₵6,000</option>
+      <option value="8000">iPhone - GH₵8,000</option>
+      <option value="10000">iPhone - GH₵10,000</option>
+      <option value="custom">Enter custom price</option>
+    </select>
+  </div>
+
+  <div class="field" id="customField" hidden>
+    <label for="customPrice">Enter iPhone price (GH₵)</label>
+    <input type="number" id="customPrice" min="1" placeholder="e.g. 2300">
+  </div>
+
+  <div class="field">
+    <div class="range-info">
+      <label for="deposit">Deposit Percentage</label>
+      <span id="depositValue">50%</span>
+    </div>
+
+    <input type="range" id="deposit" min="30" max="80" step="5" value="50">
+  </div>
+
+  <div class="field">
+    <label for="weeks">Payment Duration</label>
+    <select id="weeks">
+      <option value="4">4 Weeks (1 Month)</option>
+      <option value="8">8 Weeks (2 Months)</option>
+      <option value="12" selected>12 Weeks (3 Months)</option>
+      <option value="16">16 Weeks (4 Months)</option>
+      <option value="20">20 Weeks (5 Months)</option>
+      <option value="24">24 Weeks (6 Months)</option>
+    </select>
+  </div>
+
+  <div class="results">
+
+    <h3>Your Payment Breakdown</h3>
+
+    <div class="result-row">
+      <span>iPhone Price</span>
+      <strong id="priceResult">GH₵2,300.00</strong>
+    </div>
+
+    <div class="result-row">
+      <span>Down Payment</span>
+      <strong id="downResult">GH₵1,150.00</strong>
+    </div>
+
+    <div class="result-row">
+      <span>Remaining Balance</span>
+      <strong id="balanceResult">GH₵1,150.00</strong>
+    </div>
+
+    <div class="result-row">
+      <span>Total Weekly Payments</span>
+      <strong id="installmentTotal">GH₵1,725.00</strong>
+    </div>
+
+    <div class="result-row highlight">
+      <span>Weekly Payment</span>
+      <strong id="weeklyResult">GH₵143.75</strong>
+    </div>
+
+    <div class="result-row">
+      <span>Number of Weeks</span>
+      <strong id="weeksResult">12 Weeks</strong>
+    </div>
+
+    <div class="result-row total">
+      <span>Total Amount Payable</span>
+      <strong id="totalResult">GH₵2,875.00</strong>
+    </div>
+
+    <small>
+      The installment amount is calculated using your stated
+      factor of 1.5. The final payment agreement must be
+      confirmed with RasOwuraku.
+    </small>
+
+  </div>
+
+  <div class="formula">
+    <h3>How Your Payment Is Calculated</h3>
+
+    <p id="formulaPrice">2,300 × 50 ÷ 100 = 1,150</p>
+    <p id="formulaBalance">2,300 − 1,150 = 1,150</p>
+    <p id="formulaWeekly">1,150 × 1.5 ÷ 12 = 143.75</p>
+
+    <p style="color:#f6d987;font-weight:bold">
+      Your weekly payment is calculated automatically.
+    </p>
+  </div>
+
+  <div class="actions">
+
+    <button class="btn gold" onclick="resetCalculator()">
+      Reset Calculator
+    </button>
+
+    <a class="btn whatsapp" id="whatsappPlan"
+       href="https://wa.me/233241719370"
+       target="_blank" rel="noopener">
+      Send Plan on WhatsApp
+    </a>
+
+  </div>
+
+</div>
+</div>
+</section>
+
+<section class="how">
+<div class="wrap">
+
+  <h2>How It Works</h2>
+
+  <div class="steps">
+
+    <div class="step">
+      <b>01. Choose Your iPhone</b>
+      <p>Select your preferred iPhone or enter its price.</p>
+    </div>
+
+    <div class="step">
+      <b>02. Make a Deposit</b>
+      <p>Choose your deposit percentage and see how much you need to pay first.</p>
+    </div>
+
+    <div class="step">
+      <b>03. Choose Your Weeks</b>
+      <p>Select your preferred repayment period and calculate your weekly payments.</p>
+    </div>
+
+    <div class="step">
+      <b>04. Contact Us</b>
+      <p>Send your payment plan to RasOwuraku for confirmation and further assistance.</p>
+    </div>
+
+  </div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="stripe" style="margin-bottom:20px"></div>
+
+    <b>RasOwuraku iPhones</b><br>
+
+    ADUM PZ, Pat Thomas Building, 2nd Floor<br>
+
+    Call / WhatsApp:
+    <a href="tel:+233241719370">+233 241719370</a><br>
+
+    Your iPhone Partner for Life.<br>
+
+    <small>© <span id="year"></span> RasOwuraku iPhones. All rights reserved.</small>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/233241719370"
+   target="_blank" rel="noopener">WhatsApp</a>
+
+<script>
+const phone = document.getElementById("phone");
+const customField = document.getElementById("customField");
+const customPrice = document.getElementById("customPrice");
+const deposit = document.getElementById("deposit");
+const weeks = document.getElementById("weeks");
+
+const money = amount =>
+  "GH₵" + amount.toLocaleString("en-GH", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+function getPrice() {
+  if (phone.value === "custom") {
+    return Math.max(0, Number(customPrice.value) || 0);
+  }
+  return Number(phone.value);
+}
+
+function calculate() {
+
+  const price = getPrice();
+  const percentage = Number(deposit.value);
+  const duration = Number(weeks.value);
+
+  // Down payment
+  const downPayment = price * percentage / 100;
+
+  // Remaining balance
+  const balance = price - downPayment;
+
+  // Total installment payments
+  const installmentTotal = balance * 1.5;
+
+  // Weekly payment
+  const weeklyPayment = installmentTotal / duration;
+
+  // Total amount customer pays
+  const totalPayable = downPayment + installmentTotal;
+
+  document.getElementById("depositValue").textContent =
+    percentage + "%";
+
+  document.getElementById("priceResult").textContent =
+    money(price);
+
+  document.getElementById("downResult").textContent =
+    money(downPayment);
+
+  document.getElementById("balanceResult").textContent =
+    money(balance);
+
+  document.getElementById("installmentTotal").textContent =
+    money(installmentTotal);
+
+  document.getElementById("weeklyResult").textContent =
+    money(weeklyPayment);
+
+  document.getElementById("weeksResult").textContent =
+    duration + " Weeks";
+
+  document.getElementById("totalResult").textContent =
+    money(totalPayable);
+
+  // Formula display
+  document.getElementById("formulaPrice").textContent =
+    price.toLocaleString("en-GH") + " × " +
+    percentage + " ÷ 100 = " +
+    downPayment.toFixed(2);
+
+  document.getElementById("formulaBalance").textContent =
+    price.toFixed(2) + " − " +
+    downPayment.toFixed(2) + " = " +
+    balance.toFixed(2);
+
+  document.getElementById("formulaWeekly").textContent =
+    balance.toFixed(2) + " × 1.5 ÷ " +
+    duration + " = " +
+    weeklyPayment.toFixed(2);
+
+  // WhatsApp message
+  const message =
+`Hello RasOwuraku, I am interested in an iPhone installment plan.
+
+iPhone Price: ${money(price)}
+Deposit: ${percentage}%
+Down Payment: ${money(downPayment)}
+Remaining Balance: ${money(balance)}
+Duration: ${duration} weeks
+Weekly Payment: ${money(weeklyPayment)}
+Total Installment Payments: ${money(installmentTotal)}
+Total Amount Payable: ${money(totalPayable)}
+
+Kindly assist me with this installment plan.`;
+
+  document.getElementById("whatsappPlan").href =
+    "https://wa.me/233241719370?text=" +
+    encodeURIComponent(message);
+}
+
+phone.addEventListener("change", () => {
+  customField.hidden = phone.value !== "custom";
+  calculate();
+});
+
+customPrice.addEventListener("input", calculate);
+deposit.addEventListener("input", calculate);
+weeks.addEventListener("change", calculate);
+
+function resetCalculator() {
+  phone.value = "2300";
+  customPrice.value = "";
+  deposit.value = 50;
+  weeks.value = 12;
+  customField.hidden = true;
+  calculate();
+}
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+calculate();
+</script>
+
+</body>
+</html>
