@@ -1,47 +1,676 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="RasOwuraku iPhones: buy, sell, swap, repair and pay in installments. Adum PZ, Pat Thomas Building, 2nd Floor.">
+
+<meta name="description" content="RasOwuraku iPhones offers professional iPhone screen, battery, camera, charging port and other repairs.">
+
 <title>Repairs – RasOwuraku iPhones</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="style.css">
+
+<style>
+
+/* REPAIR GALLERY */
+
+.rg-head {
+    margin-bottom: 25px;
+}
+
+.rg-head h2 {
+    margin-bottom: 10px;
+}
+
+.rg-head .sub {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.rg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin: 0 0 45px;
+    padding: 0;
+    list-style: none;
+    align-items: stretch;
+}
+
+.rg-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    background: #fff;
+    color: #222;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    transition: .25s ease;
+}
+
+.rg-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,.12);
+}
+
+.rg-card:focus-visible {
+    outline: 3px solid #d62d2d;
+    outline-offset: 3px;
+}
+
+.rg-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #eee;
+    flex-shrink: 0;
+}
+
+.rg-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .3s ease;
+}
+
+.rg-card:hover .rg-img img {
+    transform: scale(1.05);
+}
+
+.rg-fallback {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    color: #444;
+    background: linear-gradient(135deg,#f3ecd6,#f6dcdc,#d9f0e3);
+}
+
+.rg-img.is-missing img {
+    display: none;
+}
+
+.rg-img.is-missing .rg-fallback {
+    display: flex;
+}
+
+/* IMPORTANT: DESCRIPTION VISIBILITY */
+
+.rg-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 17px;
+    border-top: 4px solid #d4a937;
+    background: #fff;
+    color: #222;
+}
+
+.rg-card:nth-child(3n+2) .rg-body {
+    border-top-color: #d62d2d;
+}
+
+.rg-card:nth-child(3n+3) .rg-body {
+    border-top-color: #0a9a4a;
+}
+
+.rg-body strong {
+    display: block;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #171717;
+}
+
+.rg-body span {
+    display: block;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* FULL DESCRIPTION ALWAYS VISIBLE */
+
+.rg-desc {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+
+    margin-top: 14px;
+    padding-top: 13px;
+
+    border-top: 1px dashed #ccc;
+
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+
+    color: #333 !important;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+.rg-card.is-picked {
+    box-shadow: 0 0 0 3px #d62d2d;
+}
+
+/* BOOKING FORM */
+
+#repForm label {
+    display: block;
+    margin-bottom: 15px;
+}
+
+#repForm input,
+#repForm select,
+#repForm textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#repForm textarea {
+    min-height: 90px;
+}
+
+/* TABLETS */
+
+@media(max-width: 900px) {
+    .rg-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width: 550px) {
+    .rg-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .rg-body {
+        padding: 17px;
+    }
+
+    .rg-body strong {
+        font-size: 20px;
+    }
+
+    .rg-body span {
+        font-size: 15px;
+    }
+
+    .rg-desc {
+        font-size: 14px;
+        line-height: 1.8;
+    }
+}
+
+/* DARK MODE */
+
+@media(prefers-color-scheme: dark) {
+
+    .rg-card {
+        background: #fff;
+        color: #222;
+        border-color: #ddd;
+    }
+
+    .rg-body {
+        background: #fff;
+        color: #222;
+    }
+
+    .rg-body strong {
+        color: #171717;
+    }
+
+    .rg-body span {
+        color: #555;
+    }
+
+    .rg-desc {
+        color: #333 !important;
+        border-top-color: #ccc;
+    }
+}
+
+@media(prefers-reduced-motion: reduce) {
+    .rg-card,
+    .rg-img img {
+        transition: none;
+    }
+}
+
+</style>
 </head>
+
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<linearGradient id="wp" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d4a937"/><stop offset=".5" stop-color="#d62d2d"/><stop offset="1" stop-color="#0a9a4a"/></linearGradient>
-<linearGradient id="gr" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#0a9a4a"/><stop offset="1" stop-color="#d4a937"/></linearGradient>
-</defs></svg>
+
 <div class="stripe"></div>
-<header><div class="wrap">
-<a class="logo" href="index.html">RasOwuraku <b>iPhones</b></a>
-<nav aria-label="Main"><a href="index.html">Home</a><a href="shop.html">Shop</a><a href="swap.html">Buy &amp; swap</a><a href="repair.html" aria-current="page">Repairs</a><a href="installments.html">Installments</a><a href="contact.html">WhatsApp</a><a href="admin.html">Admin</a></nav>
-</div></header>
-<main>
-<section><div class="wrap">
-<div style="border-top:0" class="feat flip" id="repair">
-<div><h2>Book a repair</h2>
-<p class="sub">Screen replacement, battery replacement and more. Tell us what is wrong and we will quote you before we start.</p>
-<form id="repForm">
-<div class="row2"><label>Your name<input name="name" required></label><label>Phone number<input name="phone" required inputmode="tel"></label></div>
-<div class="row2"><label>iPhone model<input name="model" placeholder="iPhone 13" required></label>
-<label>Repair needed<select name="fix"><option>Screen replacement</option><option>Battery replacement</option><option>Charging port</option><option>Back glass</option><option>Camera</option><option>Water damage</option><option>Other</option></select></label></div>
-<label>More details (optional)<textarea name="msg" rows="2"></textarea></label>
-<button class="btn red" type="submit">Book repair on WhatsApp</button>
-</form></div>
-<div class="art" id="art-repair" role="img" aria-label="iPhone with a cracked screen and a wrench"></div>
+
+<header>
+<div class="wrap">
+
+<a class="logo" href="index.html">
+RasOwuraku <b>iPhones</b>
+</a>
+
+<nav aria-label="Main">
+<a href="index.html">Home</a>
+<a href="shop.html">Shop</a>
+<a href="swap.html">Buy &amp; swap</a>
+<a href="repair.html" aria-current="page">Repairs</a>
+<a href="installments.html">Installments</a>
+<a href="contact.html">WhatsApp</a>
+</nav>
+
 </div>
-</div></section>
+</header>
+
+<main>
+
+<section>
+<div class="wrap">
+
+<div class="rg-head">
+<h2>What We Repair</h2>
+
+<p class="sub">
+We provide reliable iPhone repair services using professional repair
+techniques. Explore our services below to understand what we can fix.
+</p>
+</div>
+
+<ul class="rg-grid" id="rgGrid">
+
+<!-- 1 SCREEN REPLACEMENT -->
+
+<li>
+<button type="button" class="rg-card" data-fix="Screen replacement">
+
+<div class="rg-img">
+<img src="screen.jpg" alt="iPhone screen replacement" loading="lazy">
+<div class="rg-fallback">Screen Replacement</div>
+</div>
+
+<div class="rg-body">
+
+<strong>Screen Replacement</strong>
+
+<span>Cracked screen, dead touch or display lines.</span>
+
+<p class="rg-desc">
+We replace damaged iPhone screens and check touch sensitivity,
+Face ID, brightness and display colours before returning your device.
+Whether your screen is cracked, showing lines or completely black,
+we help restore your phone's display.
+</p>
+
+</div>
+</button>
+</li>
+
+<!-- 2 BATTERY REPLACEMENT -->
+
+<li>
+<button type="button" class="rg-card" data-fix="Battery replacement">
+
+<div class="rg-img">
+<img src="battery.jpg" alt="iPhone battery repair" loading="lazy">
+<div class="rg-fallback">Battery Replacement</div>
+</div>
+
+<div class="rg-body">
+
+<strong>Battery Replacement</strong>
+
+<span>Fast battery drainage or unexpected shutdowns.</span>
+
+<p class="rg-desc">
+Does your iPhone battery drain quickly, overheat or shut down
+unexpectedly? We inspect your battery and replace faulty units.
+We also test charging performance to help your device last longer.
+</p>
+
+</div>
+</button>
+</li>
+
+<!-- 3 CHARGING PORT -->
+
+<li>
+<button type="button" class="rg-card" data-fix="Charging port">
+
+<div class="rg-img">
+<img src="charging.jpg" alt="iPhone charging port repair" loading="lazy">
+<div class="rg-fallback">Charging Port Repair</div>
+</div>
+
+<div class="rg-body">
+
+<strong>Charging Port Repair</strong>
+
+<span>Phone not charging or loose charging cable.</span>
+
+<p class="rg-desc">
+If your iPhone refuses to charge or the cable keeps disconnecting,
+we inspect the charging port for dust, damage or loose connections.
+We clean or replace faulty components where necessary.
+</p>
+
+</div>
+</button>
+</li>
+
+<!-- 4 BACK GLASS -->
+
+<li>
+<button type="button" class="rg-card" data-fix="Back glass">
+
+<div class="rg-img">
+<img src="black glass.jpg" alt="Cracked iPhone back glass" loading="lazy">
+<div class="rg-fallback">Back Glass Repair</div>
+</div>
+
+<div class="rg-body">
+
+<strong>Back Glass Repair</strong>
+
+<span>Cracked or shattered iPhone back panel.</span>
+
+<p class="rg-desc">
+We repair damaged iPhone back glass to restore your phone's
+appearance and protect its internal components from dust and
+debris. We carefully remove damaged glass and install a replacement
+panel compatible with your device.
+</p>
+
+</div>
+</button>
+</li>
+
+<!-- 5 CAMERA -->
+
+<li>
+<button type="button" class="rg-card" data-fix="Camera">
+
+<div class="rg-img">
+<img src="camera.jpg" alt="iPhone camera repair" loading="lazy">
+<div class="rg-fallback">Camera Repair</div>
+</div>
+
+<div class="rg-body">
+
+<strong>Camera Repair</strong>
+
+<span>Blurry pictures, broken lens or black camera screen.</span>
+
+<p class="rg-desc">
+Having problems taking clear pictures or recording videos?
+We inspect faulty camera modules, damaged lenses and camera
+connections. Our goal is to restore your iPhone's photography
+and video recording performance.
+</p>
+
+</div>
+</button>
+</li>
+
+<!-- 6 WATER DAMAGE -->
+
+<li>
+<button type="button" class="rg-card" data-fix="Water damage">
+
+<div class="rg-img">
+<img src="water damage.jpg" alt="Water damaged iPhone repair" loading="lazy">
+<div class="rg-fallback">Water Damage Repair</div>
+</div>
+
+<div class="rg-body">
+
+<strong>Water Damage Repair</strong>
+
+<span>iPhone exposed to water or other liquids.</span>
+
+<p class="rg-desc">
+If your iPhone falls into water, switch it off immediately.
+Do not charge it or attempt to heat it. Bring it to us for inspection
+and appropriate internal cleaning. Early attention may improve
+the chances of recovering your device.
+</p>
+
+</div>
+</button>
+</li>
+
+</ul>
+
+</div>
+</section>
+
+
+<!-- REPAIR BOOKING -->
+
+<section>
+<div class="wrap">
+
+<div style="border-top:0" class="feat flip" id="repair">
+
+<div>
+
+<h2>Book a Repair</h2>
+
+<p class="sub">
+Tell us about your iPhone problem. Our team will contact you
+with the repair details and quotation before starting the work.
+</p>
+
+<form id="repForm">
+
+<div class="row2">
+
+<label>
+Your Name
+<input name="name" placeholder="Enter your name" required>
+</label>
+
+<label>
+Phone Number
+<input name="phone" placeholder="Your phone number" required inputmode="tel">
+</label>
+
+</div>
+
+<div class="row2">
+
+<label>
+iPhone Model
+<input name="model" placeholder="e.g. iPhone 13" required>
+</label>
+
+<label>
+Repair Needed
+
+<select name="fix">
+<option>Screen replacement</option>
+<option>Battery replacement</option>
+<option>Charging port</option>
+<option>Back glass</option>
+<option>Camera</option>
+<option>Water damage</option>
+<option>Other</option>
+</select>
+
+</label>
+
+</div>
+
+<label>
+More Details (Optional)
+<textarea name="msg" rows="3" placeholder="Describe the problem with your iPhone..."></textarea>
+</label>
+
+<button class="btn red" type="submit">
+Book Repair on WhatsApp
+</button>
+
+</form>
+
+</div>
+
+<div class="art" id="art-repair" role="img"
+aria-label="iPhone repair illustration"></div>
+
+</div>
+
+</div>
+</section>
+
 </main>
-<footer><div class="wrap">
+
+
+<footer>
+
+<div class="wrap">
+
 <div class="stripe" style="margin-bottom:24px;border-radius:3px"></div>
+
 <b style="color:#fff">RasOwuraku iPhones</b><br>
+
 ADUM PZ, Pat Thomas Building, 2nd Floor<br>
-Call / WhatsApp: <a href="tel:+233241719370">+233 241719370</a><br><br>
+
+Call / WhatsApp:
+<a href="tel:+233241719370">+233 241719370</a>
+
+<br><br>
+
 Your Dream iPhone, Our Priority.
-</div></footer>
-<a class="btn fab" id="fab" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">WhatsApp</a>
+
+</div>
+
+</footer>
+
+
+<a class="btn fab"
+id="fab"
+href="https://wa.me/233241719370"
+target="_blank"
+rel="noopener"
+aria-label="Chat on WhatsApp">
+WhatsApp
+</a>
+
+
 <script src="app.js"></script>
+
+<script>
+
+/* IMAGE FALLBACK AND REPAIR SELECTION */
+
+(function() {
+
+    const cards = document.querySelectorAll('.rg-card');
+
+    const select = document.querySelector(
+        '#repForm select[name="fix"]'
+    );
+
+    const form = document.getElementById('repair');
+
+    cards.forEach(function(card) {
+
+        const img = card.querySelector('img');
+        const box = card.querySelector('.rg-img');
+
+        function missing() {
+            box.classList.add('is-missing');
+        }
+
+        img.addEventListener('error', missing);
+
+        if (img.complete && img.naturalWidth === 0) {
+            missing();
+        }
+
+        card.addEventListener('click', function() {
+
+            cards.forEach(function(c) {
+                c.classList.remove('is-picked');
+            });
+
+            card.classList.add('is-picked');
+
+            if (select) {
+                select.value = card.dataset.fix;
+            }
+
+            if (form) {
+                form.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+
+        });
+
+    });
+
+})();
+
+
+/* WHATSAPP REPAIR BOOKING */
+
+document.getElementById('repForm').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    const data = new FormData(this);
+
+    const name = data.get('name');
+    const phone = data.get('phone');
+    const model = data.get('model');
+    const fix = data.get('fix');
+    const msg = data.get('msg');
+
+    const message =
+        "Hello RasOwuraku iPhones,\n\n" +
+        "I would like to book a repair.\n\n" +
+        "Name: " + name + "\n" +
+        "Phone: " + phone + "\n" +
+        "iPhone Model: " + model + "\n" +
+        "Repair Needed: " + fix + "\n" +
+        "Details: " + (msg || "Not provided");
+
+    const url =
+        "https://wa.me/233241719370?text=" +
+        encodeURIComponent(message);
+
+    window.open(url, "_blank");
+
+});
+
+</script>
+
 </body>
 </html>
