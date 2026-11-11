@@ -533,82 +533,6 @@ select.field option {
     color: white;
 }
 
-/* ADMIN */
-
-.admin-section {
-    padding: 60px 0;
-    background: #111c23;
-}
-
-.admin-box {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 25px;
-}
-
-.admin-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-.admin-tabs button {
-    padding: 11px 15px;
-    border: 1px solid var(--border);
-    background: #101820;
-    color: white;
-    border-radius: 8px;
-}
-
-.admin-tabs button.active {
-    background: var(--gold);
-    color: #101820;
-}
-
-.admin-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    min-width: 650px;
-}
-
-.admin-table th,
-.admin-table td {
-    text-align: left;
-    padding: 13px;
-    border-bottom: 1px solid var(--border);
-}
-
-.admin-table th {
-    color: var(--gold);
-}
-
-.table-wrap {
-    overflow-x: auto;
-}
-
-.admin-action {
-    background: #314650;
-    color: white;
-    border: 0;
-    padding: 7px 10px;
-    border-radius: 6px;
-    margin: 2px;
-}
-
-.admin-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 20px 0;
-}
-
-.admin-form .full {
-    grid-column: 1/-1;
-}
-
 /* FOOTER */
 
 footer {
@@ -989,127 +913,6 @@ a secure server-side payment verification endpoint.
 </div>
 
 
-<!-- ADMIN AREA -->
-
-<section class="admin-section" id="admin">
-<div class="wrap">
-
-<div class="section-heading">
-<span class="tag">STORE MANAGEMENT</span>
-<h2>Administrator Dashboard</h2>
-<p>Manage your store products and customer orders.</p>
-</div>
-
-<div class="admin-box">
-
-<div id="adminLogin">
-<h3>Administrator Access</h3>
-<p style="color:var(--muted);font-size:13px;margin:12px 0">
-Enter the demo administrator password to access management.
-</p>
-<input type="password" class="field" id="adminPassword"
-placeholder="Administrator password">
-<br><br>
-<button class="btn btn-gold" onclick="loginAdmin()">Login</button>
-<p class="notice">
-Demo password is CHANGE-ME-123. Change it in the JavaScript.
-This browser-only login is not secure for a live store.
-</p>
-</div>
-
-<div id="adminDashboard" class="hidden">
-
-<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px">
-<h3>Store Dashboard</h3>
-<button class="admin-action" onclick="logoutAdmin()">Logout</button>
-</div>
-
-<div class="admin-tabs">
-<button class="active" onclick="showAdminTab('productsTab',this)">Products</button>
-<button onclick="showAdminTab('ordersTab',this)">Orders</button>
-</div>
-
-
-<!-- PRODUCT MANAGEMENT -->
-
-<div id="productsTab">
-
-<h3>Add / Update Product</h3>
-
-<form class="admin-form" id="productForm">
-
-<input class="field" name="id" type="hidden">
-
-<input class="field" name="name" required placeholder="Product name e.g. iPhone 15 Pro">
-
-<input class="field" name="storage" required placeholder="Storage e.g. 256GB">
-
-<input class="field" name="color" placeholder="Colour">
-
-<input class="field" name="price" type="number" min="1" required placeholder="Price in GHS">
-
-<input class="field" name="stock" type="number" min="0" required placeholder="Stock quantity">
-
-<select class="field" name="condition">
-<option>Brand New</option>
-<option>UK Used</option>
-<option>Refurbished</option>
-</select>
-
-<input class="field full" name="image" placeholder="Product image URL (optional)">
-
-<button class="btn btn-gold full" type="submit">Save Product</button>
-
-</form>
-
-<div class="table-wrap">
-<table class="admin-table">
-<thead>
-<tr>
-<th>Product</th>
-<th>Price</th>
-<th>Stock</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody id="adminProducts"></tbody>
-</table>
-</div>
-
-</div>
-
-
-<!-- ORDER MANAGEMENT -->
-
-<div id="ordersTab" class="hidden">
-
-<h3>Customer Orders</h3>
-
-<div class="table-wrap">
-<table class="admin-table">
-<thead>
-<tr>
-<th>Order ID</th>
-<th>Customer</th>
-<th>Product(s)</th>
-<th>Total</th>
-<th>Payment</th>
-<th>Status</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody id="adminOrders"></tbody>
-</table>
-</div>
-
-</div>
-
-</div>
-
-</div>
-</div>
-</section>
-
 
 <!-- FOOTER -->
 
@@ -1142,9 +945,6 @@ target="_blank" rel="noopener">WhatsApp</a>
 
 const WHATSAPP = "233241719370";
 
-// DEMO ADMIN PASSWORD.
-// This is NOT secure for production.
-const ADMIN_PASSWORD = "CHANGE-ME-123";
 
 // Add your Paystack public key here.
 // Never put your secret key in this file.
@@ -1161,16 +961,56 @@ const VERIFY_PAYMENT_ENDPOINT = "/api/verify-payment";
 // ====================================
 
 const starterProducts = [
-    {id:1,name:"iPhone 11",storage:"128GB",color:"Black",price:1800,stock:5,condition:"UK Used",image:"",badge:"Popular"},
-    {id:2,name:"iPhone 12",storage:"128GB",color:"Blue",price:2300,stock:4,condition:"UK Used",image:"",badge:"Best Seller"},
-    {id:3,name:"iPhone 13",storage:"128GB",color:"Midnight",price:3000,stock:5,condition:"UK Used",image:"",badge:"Trending"},
-    {id:4,name:"iPhone 13 Pro",storage:"256GB",color:"Sierra Blue",price:3800,stock:3,condition:"UK Used",image:"",badge:"Premium"},
-    {id:5,name:"iPhone 14",storage:"128GB",color:"Purple",price:3900,stock:4,condition:"UK Used",image:"",badge:"Popular"},
-    {id:6,name:"iPhone 14 Pro",storage:"256GB",color:"Deep Purple",price:4900,stock:3,condition:"UK Used",image:"",badge:"Premium"},
-    {id:7,name:"iPhone 15",storage:"128GB",color:"Pink",price:4800,stock:3,condition:"UK Used",image:"",badge:"Trending"},
-    {id:8,name:"iPhone 15 Pro Max",storage:"256GB",color:"Natural Titanium",price:6500,stock:2,condition:"UK Used",image:"",badge:"Premium"}
-];
+    // IMAGE SETUP: create an "images" folder beside shop.html and put your phone photos inside it.
+    // To change a photo, edit only the image path for that phone below.
 
+    // ---------- iPhone 7 to X ----------
+    {id:1,  name:"iPhone 7",          storage:"128GB", color:"Black",            price:700,   stock:5, condition:"UK Used", image:"7.jpg",           badge:"Budget"},
+    {id:2,  name:"iPhone 7 Plus",     storage:"128GB", color:"Rose Gold",        price:850,   stock:4, condition:"UK Used", image:"17 plus.jpg",      badge:""},
+    {id:3,  name:"iPhone 8",          storage:"64GB",  color:"Space Gray",       price:900,   stock:5, condition:"UK Used", image:"8.jpg",           badge:"Budget"},
+    {id:4,  name:"iPhone 8 Plus",     storage:"64GB",  color:"Gold",             price:1100,  stock:4, condition:"UK Used", image:"8 plus.jpg",      badge:""},
+    {id:5,  name:"iPhone X",          storage:"256GB", color:"Silver",           price:1300,  stock:3, condition:"UK Used", image:"x.jpg",           badge:""},
+
+    // ---------- iPhone 11 series ----------
+    {id:6,  name:"iPhone 11",         storage:"128GB", color:"Black",            price:1800,  stock:5, condition:"UK Used", image:"11.jpg",          badge:"Popular"},
+    {id:7,  name:"iPhone 11 Pro",     storage:"256GB", color:"Midnight Green",   price:2100,  stock:4, condition:"UK Used", image:"11pro.jpg",       badge:""},
+    {id:8,  name:"iPhone 11 Pro Max", storage:"256GB", color:"Gold",             price:2400,  stock:3, condition:"UK Used", image:"11 pro max.png",  badge:""},
+
+    // ---------- iPhone 12 series ----------
+    {id:9,  name:"iPhone 12",         storage:"128GB", color:"Blue",             price:2300,  stock:4, condition:"UK Used", image:"12.jpg",          badge:"Best Seller"},
+    {id:10, name:"iPhone 12 Pro",     storage:"256GB", color:"Pacific Blue",     price:2700,  stock:3, condition:"UK Used", image:"12 pro.jpg",      badge:""},
+    {id:11, name:"iPhone 12 Pro Max", storage:"256GB", color:"Graphite",         price:3100,  stock:3, condition:"UK Used", image:"12 pro max.jpg",  badge:""},
+
+    // ---------- iPhone 13 series ----------
+    {id:12, name:"iPhone 13",         storage:"128GB", color:"Midnight",         price:3000,  stock:5, condition:"UK Used", image:"13.jpg",          badge:"Trending"},
+    {id:13, name:"iPhone 13 Mini",    storage:"128GB", color:"Pink",             price:2900,  stock:3, condition:"UK Used", image:"13 mini.jpg",     badge:""},
+    {id:14, name:"iPhone 13 Pro",     storage:"256GB", color:"Sierra Blue",      price:3800,  stock:3, condition:"UK Used", image:"13 pro.jpg",      badge:"Premium"},
+    {id:15, name:"iPhone 13 Pro Max", storage:"256GB", color:"Graphite",         price:4200,  stock:2, condition:"UK Used", image:"13 pro max.jpg",  badge:""},
+
+    // ---------- iPhone 14 series ----------
+    {id:16, name:"iPhone 14",         storage:"128GB", color:"Purple",           price:3900,  stock:4, condition:"UK Used", image:"14.jpg",          badge:"Popular"},
+    {id:17, name:"iPhone 14 Pro",     storage:"256GB", color:"Deep Purple",      price:4900,  stock:3, condition:"UK Used", image:"14 pro.jpg",      badge:"Premium"},
+    {id:18, name:"iPhone 14 Pro Max", storage:"256GB", color:"Space Black",      price:5400,  stock:2, condition:"UK Used", image:"14 pro max.jpg",  badge:""},
+
+    // ---------- iPhone 15 series ----------
+    {id:19, name:"iPhone 15",         storage:"128GB", color:"Pink",             price:4800,  stock:3, condition:"UK Used", image:"15.jpg",          badge:"Trending"},
+    {id:20, name:"iPhone 15 Pro Max", storage:"256GB", color:"Natural Titanium", price:6500,  stock:2, condition:"UK Used", image:"15 pro max.jpg",  badge:"Premium"},
+
+    // ---------- iPhone 16 series ----------
+    {id:21, name:"iPhone 16",         storage:"128GB", color:"Ultramarine",      price:5800,  stock:3, condition:"UK Used", image:"16.jpg",          badge:"New"},
+    {id:22, name:"iPhone 16 Pro",     storage:"256GB", color:"Desert Titanium",  price:7200,  stock:2, condition:"UK Used", image:"16 pro.jpg",      badge:"Premium"},
+    {id:23, name:"iPhone 16 Pro Max", storage:"256GB", color:"Natural Titanium", price:8000,  stock:2, condition:"UK Used", image:"16 pro max.jpg",  badge:"Premium"},
+
+    // ---------- iPhone 17 series ----------
+    {id:24, name:"iPhone 17",         storage:"256GB", color:"Lavender",         price:7500,  stock:2, condition:"UK Used", image:"17.jpg",          badge:"New"},
+    {id:25, name:"iPhone 17 Pro",     storage:"256GB", color:"Cosmic Orange",    price:9500,  stock:2, condition:"UK Used", image:"17 pro.jpg",      badge:"Premium"},
+    {id:26, name:"iPhone 17 Pro Max", storage:"256GB", color:"Deep Blue",        price:10500, stock:1, condition:"UK Used", image:"17 pro max.jpg",  badge:"Premium"},
+
+    // ---------- iPhone 18 series ----------
+    {id:27, name:"iPhone 18",         storage:"256GB", color:"Black",            price:9000,  stock:1, condition:"UK Used", image:"18.jpg",          badge:"New"},
+    {id:28, name:"iPhone 18 Pro",     storage:"256GB", color:"Titanium",         price:11500, stock:1, condition:"UK Used", image:"18 pro.jpg",      badge:"Premium"},
+    {id:29, name:"iPhone 18 Pro Max", storage:"256GB", color:"Titanium",         price:12500, stock:1, condition:"UK Used", image:"18 pro max.jpg",  badge:"Premium"}
+];
 function loadData(key, fallback) {
     try {
         const data = localStorage.getItem(key);
@@ -1180,12 +1020,11 @@ function loadData(key, fallback) {
     }
 }
 
-let products = loadData("ras_products", starterProducts);
+let products = starterProducts;
 let cart = loadData("ras_cart", []);
 let orders = loadData("ras_orders", []);
 
 function saveData() {
-    localStorage.setItem("ras_products",JSON.stringify(products));
     localStorage.setItem("ras_cart",JSON.stringify(cart));
     localStorage.setItem("ras_orders",JSON.stringify(orders));
 }
@@ -1698,191 +1537,6 @@ document.getElementById("checkoutForm").addEventListener("submit",function(e){
 });
 
 
-// ====================================
-// ADMIN AUTHENTICATION - DEMO ONLY
-// ====================================
-
-function loginAdmin() {
-
-    const password=document.getElementById("adminPassword").value;
-
-    if(password!==ADMIN_PASSWORD) {
-        alert("Incorrect administrator password.");
-        return;
-    }
-
-    sessionStorage.setItem("ras_admin","true");
-
-    document.getElementById("adminLogin").classList.add("hidden");
-    document.getElementById("adminDashboard").classList.remove("hidden");
-
-    renderAdmin();
-}
-
-function logoutAdmin() {
-    sessionStorage.removeItem("ras_admin");
-    document.getElementById("adminDashboard").classList.add("hidden");
-    document.getElementById("adminLogin").classList.remove("hidden");
-}
-
-function showAdminTab(id,button) {
-
-    document.getElementById("productsTab").classList.add("hidden");
-    document.getElementById("ordersTab").classList.add("hidden");
-
-    document.getElementById(id).classList.remove("hidden");
-
-    document.querySelectorAll(".admin-tabs button").forEach(b=>{
-        b.classList.remove("active");
-    });
-
-    button.classList.add("active");
-}
-
-
-// ====================================
-// PRODUCT MANAGEMENT
-// ====================================
-
-document.getElementById("productForm").addEventListener("submit",function(e){
-
-    e.preventDefault();
-
-    const data=new FormData(this);
-
-    const id=data.get("id");
-
-    const product={
-        id:id?Number(id):Date.now(),
-        name:data.get("name").trim(),
-        storage:data.get("storage").trim(),
-        color:data.get("color").trim(),
-        price:Number(data.get("price")),
-        stock:Number(data.get("stock")),
-        condition:data.get("condition"),
-        image:data.get("image").trim(),
-        badge:"Available"
-    };
-
-    if(!product.name || !product.price || product.price<=0 ||
-       !Number.isInteger(product.stock) || product.stock<0) {
-        alert("Please enter valid product details.");
-        return;
-    }
-
-    if(id) {
-        products=products.map(p=>p.id===Number(id)?product:p);
-    } else {
-        products.push(product);
-    }
-
-    saveData();
-    this.reset();
-
-    renderAdmin();
-    renderProducts();
-
-    alert("Product saved successfully!");
-
-});
-
-function renderAdmin() {
-
-    document.getElementById("adminProducts").innerHTML=products.map(p=>`
-
-        <tr>
-            <td>${escapeHTML(p.name)}<br>${escapeHTML(p.storage)}</td>
-            <td>${money(p.price)}</td>
-            <td>${p.stock}</td>
-            <td>
-                <button class="admin-action" onclick="editProduct(${p.id})">Edit</button>
-                <button class="admin-action" onclick="deleteProduct(${p.id})">Delete</button>
-            </td>
-        </tr>
-
-    `).join("");
-
-    document.getElementById("adminOrders").innerHTML=orders.map(o=>`
-
-        <tr>
-            <td>${escapeHTML(o.id)}</td>
-            <td>${escapeHTML(o.name)}</td>
-            <td>${o.items.map(i=>escapeHTML(i.name)+" × "+i.quantity).join("<br>")}</td>
-            <td>${money(o.total)}</td>
-            <td>${escapeHTML(o.paymentStatus)}</td>
-            <td>
-                <select class="field" onchange="changeOrderStatus('${escapeHTML(o.id)}',this.value)">
-                    ${["Pending","Confirmed","Processing","Shipped","Completed","Cancelled"].map(s=>
-                        `<option ${o.status===s?"selected":""}>${s}</option>`
-                    ).join("")}
-                </select>
-            </td>
-            <td>
-                <button class="admin-action" onclick="viewOrder('${escapeHTML(o.id)}')">View</button>
-            </td>
-        </tr>
-
-    `).join("");
-
-}
-
-function editProduct(id) {
-
-    const p=products.find(x=>x.id===id);
-    if(!p) return;
-
-    const form=document.getElementById("productForm");
-
-    Object.keys(p).forEach(key=>{
-        if(form.elements[key]) form.elements[key].value=p[key];
-    });
-
-    form.scrollIntoView({behavior:"smooth"});
-}
-
-function deleteProduct(id) {
-
-    if(!confirm("Delete this product?")) return;
-
-    products=products.filter(p=>p.id!==id);
-    cart=cart.filter(i=>i.id!==id);
-
-    saveData();
-    updateCartCount();
-    renderAdmin();
-    renderProducts();
-
-}
-
-function changeOrderStatus(id,status) {
-
-    const order=orders.find(o=>o.id===id);
-    if(!order) return;
-
-    order.status=status;
-    saveData();
-
-    alert("Order status updated.");
-}
-
-function viewOrder(id) {
-
-    const order=orders.find(o=>o.id===id);
-    if(!order) return;
-
-    alert(
-        "ORDER: "+order.id+
-        "\nCustomer: "+order.name+
-        "\nPhone: "+order.phone+
-        "\nDelivery: "+order.delivery+
-        "\nAddress: "+order.address+
-        "\nPayment: "+order.paymentStatus+
-        "\nTotal: "+money(order.total)+
-        "\nStatus: "+order.status
-    );
-
-}
-
 
 // ====================================
 // SEARCH AND FILTERS
@@ -1905,11 +1559,6 @@ function viewOrder(id) {
 renderProducts();
 updateCartCount();
 
-if(sessionStorage.getItem("ras_admin")==="true") {
-    document.getElementById("adminLogin").classList.add("hidden");
-    document.getElementById("adminDashboard").classList.remove("hidden");
-    renderAdmin();
-}
 
 </script>
 
