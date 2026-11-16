@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://vannyspark25.github.io/RasOwuraku-iPhone/</loc>
     <priority>1.0</priority>
   </url>
+
   <url>
     <loc>https://vannyspark25.github.io/RasOwuraku-iPhone/shop.html</loc>
   </url>
+
   <url>
     <loc>https://vannyspark25.github.io/RasOwuraku-iPhone/swap.html</loc>
   </url>
+
   <url>
     <loc>https://vannyspark25.github.io/RasOwuraku-iPhone/repair.html</loc>
   </url>
+
   <url>
     <loc>https://vannyspark25.github.io/RasOwuraku-iPhone/installments.html</loc>
   </url>
+
 </urlset>
