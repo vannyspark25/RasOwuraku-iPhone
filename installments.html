@@ -436,19 +436,19 @@ footer b {color:white}
   <div class="field">
     <label for="phone">Select iPhone</label>
     <select id="phone">
-      <option value="2300">iPhone - GH₵2,300</option>
-      <option value="3000">iPhone - GH₵3,000</option>
-      <option value="4000">iPhone - GH₵4,000</option>
-      <option value="5000">iPhone - GH₵5,000</option>
-      <option value="6000">iPhone - GH₵6,000</option>
-      <option value="8000">iPhone - GH₵8,000</option>
-      <option value="10000">iPhone - GH₵10,000</option>
+      <option value="2300">iPhone - KSh2,300</option>
+      <option value="3000">iPhone - KSh3,000</option>
+      <option value="4000">iPhone - KSh4,000</option>
+      <option value="5000">iPhone - KSh5,000</option>
+      <option value="6000">iPhone - KSh6,000</option>
+      <option value="8000">iPhone - KSh8,000</option>
+      <option value="10000">iPhone - KSh10,000</option>
       <option value="custom">Enter custom price</option>
     </select>
   </div>
 
   <div class="field" id="customField" hidden>
-    <label for="customPrice">Enter iPhone price (GH₵)</label>
+    <label for="customPrice">Enter iPhone price (KSh)</label>
     <input type="number" id="customPrice" min="1" placeholder="e.g. 2300">
   </div>
 
@@ -479,27 +479,27 @@ footer b {color:white}
 
     <div class="result-row">
       <span>iPhone Price</span>
-      <strong id="priceResult">GH₵2,300.00</strong>
+      <strong id="priceResult">KSh2,300.00</strong>
     </div>
 
     <div class="result-row">
       <span>Down Payment</span>
-      <strong id="downResult">GH₵1,150.00</strong>
+      <strong id="downResult">KSh1,150.00</strong>
     </div>
 
     <div class="result-row">
       <span>Remaining Balance</span>
-      <strong id="balanceResult">GH₵1,150.00</strong>
+      <strong id="balanceResult">KSh1,150.00</strong>
     </div>
 
     <div class="result-row">
       <span>Total Weekly Payments</span>
-      <strong id="installmentTotal">GH₵1,725.00</strong>
+      <strong id="installmentTotal">KSh1,725.00</strong>
     </div>
 
     <div class="result-row highlight">
       <span>Weekly Payment</span>
-      <strong id="weeklyResult">GH₵143.75</strong>
+      <strong id="weeklyResult">KSh143.75</strong>
     </div>
 
     <div class="result-row">
@@ -509,7 +509,7 @@ footer b {color:white}
 
     <div class="result-row total">
       <span>Total Amount Payable</span>
-      <strong id="totalResult">GH₵2,875.00</strong>
+      <strong id="totalResult">KSh2,875.00</strong>
     </div>
 
     <small>
@@ -539,7 +539,7 @@ footer b {color:white}
     </button>
 
     <a class="btn whatsapp" id="whatsappPlan"
-       href="https://wa.me/233241719370"
+       href="contact.html"
        target="_blank" rel="noopener">
       Send Plan on WhatsApp
     </a>
@@ -590,10 +590,10 @@ footer b {color:white}
 
     <b>RasOwuraku iPhones</b><br>
 
-    ADUM PZ, Pat Thomas Building, 2nd Floor<br>
+    Nairobi, Kenya<br>
 
     Call / WhatsApp:
-    <a href="tel:+233241719370">+233 241719370</a><br>
+    <a href="contact.html">@vannyspark</a><br>
 
     Your iPhone Partner for Life.<br>
 
@@ -601,7 +601,7 @@ footer b {color:white}
   </div>
 </footer>
 
-<a class="fab" href="https://wa.me/233241719370"
+<a class="fab" href="contact.html"
    target="_blank" rel="noopener">WhatsApp</a>
 
 <script>
@@ -612,7 +612,7 @@ const deposit = document.getElementById("deposit");
 const weeks = document.getElementById("weeks");
 
 const money = amount =>
-  "GH₵" + amount.toLocaleString("en-GH", {
+  "KSh" + amount.toLocaleString("en-KE", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   });
@@ -671,7 +671,7 @@ function calculate() {
 
   // Formula display
   document.getElementById("formulaPrice").textContent =
-    price.toLocaleString("en-GH") + " × " +
+    price.toLocaleString("en-KE") + " × " +
     percentage + " ÷ 100 = " +
     downPayment.toFixed(2);
 
@@ -701,7 +701,7 @@ Total Amount Payable: ${money(totalPayable)}
 Kindly assist me with this installment plan.`;
 
   document.getElementById("whatsappPlan").href =
-    "https://wa.me/233241719370?text=" +
+    "https://wa.me/?text=" +
     encodeURIComponent(message);
 }
 

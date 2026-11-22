@@ -1,6 +1,6 @@
 
-const NUM='233241719370';
-const wa=t=>'https://wa.me/'+NUM+'?text='+encodeURIComponent(t);
+const NUM='';
+const wa=t=>'https://wa.me/?text='+encodeURIComponent(t);
 /* returns a harmless stand-in when an element is not on the current page */
 const $=s=>document.querySelector(s)||{addEventListener(){},style:{},selectedOptions:[],files:[]};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -39,7 +39,7 @@ $('#heroArt').innerHTML=art.hero;
 ['swap','repair','pay','chat','admin'].forEach(k=>$('#art-'+k).innerHTML=art[k]);
 
 /* ---------- shop ---------- */
-const money=n=>'GH₵ '+Number(n).toLocaleString('en-US');
+const money=n=>'KSh '+Number(n).toLocaleString('en-US');
 function productImg(p){return p.img?`<img src="${p.img}" alt="${esc(p.name)} ${esc(p.color)}">`:svg('0 0 60 120',`${cam(0,0,1,hex(p.color)).replace('<g ','<g ')}`)}
 function renderShop(){
  $('#products').innerHTML=st.products.map(p=>`<article class="card"><div class="img">${productImg(p)}</div><div class="body"><h3>${esc(p.name)}</h3><div class="meta">${esc(p.storage)} · ${esc(p.color)}</div><div class="price">${money(p.price)}</div>${p.stock?`<button class="btn" data-o="${p.id}">Order on WhatsApp</button>`:`<div class="out">Out of stock</div><button class="btn line" data-o="${p.id}">Ask when it’s back</button>`}</div></article>`).join('')||'<p class="sub">No iPhones listed yet. Check back soon or message us on WhatsApp.</p>';
