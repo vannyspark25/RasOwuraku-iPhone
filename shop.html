@@ -931,10 +931,6 @@ Proceed to Checkout →
 Place My Order →
 </button>
 
-<p class="notice">
-Temporary direct Xdigitex connection. The API key is exposed in this public website; use only a restricted/test key.
-</p>
-
 </form>
 
 </div>
@@ -971,9 +967,6 @@ target="_blank" rel="noopener">WhatsApp</a>
 // RASOWURAKU IPHONES STORE
 // ====================================
 
-// TEMPORARY DIRECT Xdigitex connection.
-// WARNING: A key placed here is public to every website visitor.
-// Paste a TEST/restricted key here first. Do not use a high-privilege live key.
 const XDIGITEX_API_KEY = "PASTE_YOUR_XDIGITEX_API_KEY_HERE";
 const XDIGITEX_API_BASE = "https://pay.xdigitex.com/api";
 
@@ -1508,7 +1501,7 @@ async function payOnline(order) {
             try {
                 const statusResponse = await fetch(
                     XDIGITEX_API_BASE + "/payments/status/" + encodeURIComponent(result.checkoutRequestId),
-                    {headers: {"X-API-Key":xdp_live_AnSoNLTkkmOXK7bR_efLb5Tb8yys6S-B}}
+                    {headers: {"X-API-Key":XDIGITEX_API_KEY}}
                 );
                 const statusResult = await statusResponse.json().catch(() => ({}));
                 if (!statusResponse.ok) {
