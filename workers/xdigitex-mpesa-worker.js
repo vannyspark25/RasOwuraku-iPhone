@@ -1,7 +1,6 @@
 // Cloudflare Worker: secure Xdigitex Pay M-Pesa proxy
-// Deploy this file as a Worker. Add XDIGITEX_API_KEY as a Worker Secret.
-// Set ALLOWED_ORIGIN to the exact GitHub Pages origin, e.g.
-// https://xdigitexai.github.io (no trailing slash).
+// Add XDIGITEX_API_KEY as a Worker Secret.
+// Set ALLOWED_ORIGIN to https://xdigitexai.github.io (no trailing slash).
 const API_BASE = "https://pay.xdigitex.com/api";
 function cors(origin, env) {
   const allowed = env.ALLOWED_ORIGIN || "https://xdigitexai.github.io";
@@ -19,9 +18,9 @@ export default {
     let upstreamUrl, method = "GET", body;
     if (url.pathname === "/payments/stkpush" && request.method === "POST") {
       let input; try { input = await request.json(); } catch { return Response.json({error:"Invalid JSON."},{status:400,headers}); }
-      const phoneNumber = String(input.phoneNumber || "").replace(/\\s/g,"");
+      const phoneNumber = String(input.phoneNumber || "").replace(/\s/g,"");
       const amount = Number(input.amount);
-      if (!/^254[17]\\d{8}$/.test(phoneNumber) || !Number.isInteger(amount) || amount < 1) return Response.json({error:"Enter a valid Kenyan mobile number and whole KSh amount."},{status:400,headers});
+      if (!/^254[17]\d{8}$/.test(phoneNumber) || !Number.isInteger(amount) || amount < 1) return Response.json({error:"Enter a valid Kenyan mobile number and whole KSh amount."},{status:400,headers});
       const accountReference = String(input.accountReference || "").slice(0,40);
       const transactionDesc = String(input.transactionDesc || "Online order").slice(0,100);
       upstreamUrl = API_BASE + "/payments/stkpush"; method = "POST";
