@@ -1523,11 +1523,13 @@ async function payOnline(order) {
                     order.status = "Confirmed";
                     setPaymentStatus("success", "Payment confirmed", "Your M-Pesa payment has been confirmed. Your order is now received.", "Order " + order.id, 100);
                     completeOrder(order);
+                    alert("M-Pesa payment confirmed. Your order " + order.id + " has been received!");
                     return;
                 }
 
                 if (status === "failed" || status === "cancelled") {
-                    throw new Error(statusResult.message || "The M-Pesa payment was not completed. You can try again or contact the store.");
+                    setPaymentStatus("error", "Payment not completed", statusResult.message || "The M-Pesa request was " + status + ". You can try again or contact the store.", "Order " + order.id, 100);
+                    return;
                 }
 
                 setPaymentStatus(
