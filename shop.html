@@ -903,8 +903,7 @@ Place My Order →
 </button>
 
 <p class="notice">
-Online payments require a configured Paystack public key and
-a secure server-side payment verification endpoint.
+M-Pesa STK Push becomes available after the secure payment Worker is deployed.
 </p>
 
 </form>
@@ -943,15 +942,8 @@ target="_blank" rel="noopener">WhatsApp</a>
 // RASOWURAKU IPHONES STORE
 // ====================================
 
-const WHATSAPP = "";
-
-
-// Add your Paystack public key here.
-// Never put your secret key in this file.
-const PAYSTACK_PUBLIC_KEY = "pk_test_REPLACE_WITH_YOUR_PUBLIC_KEY";
-
-// Your secure backend must verify Paystack references.
-const VERIFY_PAYMENT_ENDPOINT = "/api/verify-payment";
+// Set this to your deployed Cloudflare Worker URL. Never put the Xdigitex API key in public JavaScript.
+const MPESA_WORKER_URL = "https://YOUR-WORKER.workers.dev";
 
 
 // ====================================
