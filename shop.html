@@ -571,6 +571,28 @@ footer a {
     margin-top: 15px;
 }
 
+
+/* Live M-Pesa payment status */
+.payment-status {
+    display: none;
+    margin: 16px 0;
+    padding: 16px;
+    border: 1px solid rgba(243,199,92,.35);
+    border-radius: 12px;
+    background: #101b22;
+}
+.payment-status.show { display: block; }
+.payment-status h3 { font-size: 14px; margin-bottom: 7px; color: var(--gold2); }
+.payment-status p { color: var(--muted); font-size: 12px; line-height: 1.6; }
+.payment-status .status-meta { margin-top: 9px; color: #dce5e9; font-size: 11px; }
+.payment-progress { height: 6px; overflow: hidden; border-radius: 8px; background: #30414a; margin-top: 12px; }
+.payment-progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg,var(--gold),var(--gold2)); transition: width .25s ease; }
+.payment-status.success { border-color: rgba(22,163,106,.65); }
+.payment-status.success h3 { color: #51d49b; }
+.payment-status.error { border-color: rgba(255,119,119,.55); }
+.payment-status.error h3 { color: #ff9999; }
+.payment-status.pending { border-color: rgba(243,199,92,.45); }
+
 .hidden {
     display: none !important;
 }
@@ -897,6 +919,13 @@ Proceed to Checkout →
 </div>
 
 <div class="checkout-summary" id="checkoutSummary"></div>
+
+<div class="payment-status" id="paymentStatus" role="status" aria-live="polite">
+    <h3 id="paymentStatusTitle">Waiting for M-Pesa</h3>
+    <p id="paymentStatusMessage">Keep this page open while we check your payment.</p>
+    <div class="payment-progress"><span id="paymentProgressBar"></span></div>
+    <div class="status-meta" id="paymentStatusMeta"></div>
+</div>
 
 <button type="submit" class="btn btn-gold" style="width:100%">
 Place My Order →
@@ -1396,49 +1425,147 @@ Please confirm my order. Thank you!`;
 // Xdigitex Pay M-Pesa STK Push
 // ====================================
 
+function setPaymentStatus(state, title, message, meta, progress) {
+    const panel = document.getElementById("paymentStatus");
+    if (!panel) return;
+    panel.className = "payment-status show " + state;
+    document.getElementById("paymentStatusTitle").textContent = title;
+    document.getElementById("paymentStatusMessage").textContent = message;
+    document.getElementById("paymentStatusMeta").textContent = meta || "";
+    document.getElementById("paymentProgressBar").style.width = Math.max(0, Math.min(100, progress || 0)) + "%";
+}
+
+function resetPaymentStatus() {
+    const panel = document.getElementById("paymentStatus");
+    if (panel) {
+        panel.className = "payment-status";
+        document.getElementById("paymentStatusTitle").textContent = "Waiting for M-Pesa";
+        document.getElementById("paymentStatusMessage").textContent = "Keep this page open while we check your payment.";
+        document.getElementById("paymentStatusMeta").textContent = "";
+        document.getElementById("paymentProgressBar").style.width = "0%";
+    }
+}
+
 async function payOnline(order) {
-    if (!XDIGITEX_API_KEY || XDIGITEX_API_KEY.includes("PASTE_YOUR")) {
-        alert("Add your Xdigitex API key in the payment settings before testing.");
+    if (!XDIGITEX_API_KEY || XDIGITEX_API_KEY.includes("xdp_live_AnSoNLTkkmOXK7bR_efLb5Tb8yys6S-B")) {
+        alert("M-Pesa is not configured yet. Please contact the store.");
         return;
     }
-    const rawPhone = String(order.phone || "").replace(/[\s()+-]/g, "");
+
+    const rawPhone = String(order.phone || "").replace(/[\\s()+-]/g, "");
     const phoneNumber = rawPhone.startsWith("0") ? "254" + rawPhone.slice(1) :
                         rawPhone.startsWith("254") ? rawPhone : rawPhone;
-    if (!/^254[17]\d{8}$/.test(phoneNumber)) {
+    if (!/^254[17]\\d{8}$/.test(phoneNumber)) {
         alert("Enter a valid Kenyan Safaricom number, e.g. 07XXXXXXXX or 2547XXXXXXXX.");
         return;
     }
+
     const amount = Math.round(Number(order.total));
-    if (!Number.isFinite(amount) || amount < 1) { alert("The order amount is invalid."); return; }
+    if (!Number.isFinite(amount) || amount < 1) {
+        alert("The order amount is invalid.");
+        return;
+    }
 
     const submitButton = document.querySelector("#checkoutForm button[type=submit]");
-    if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Sending M-Pesa prompt…"; }
+    if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Starting M-Pesa…";
+    }
+    resetPaymentStatus();
+
     try {
+        setPaymentStatus("pending", "Sending payment request", "We are asking Safaricom to send an STK prompt to your phone.", "Order " + order.id, 5);
         const response = await fetch(XDIGITEX_API_BASE + "/payments/stkpush", {
-            method: "POST", headers: {"Content-Type":"application/json","X-API-Key":XDIGITEX_API_KEY},
-            body: JSON.stringify({phoneNumber, amount, accountReference: order.id, transactionDesc: "RasOwuraku iPhone order"})
+            method: "POST",
+            headers: {"Content-Type":"application/json", "X-API-Key":XDIGITEX_API_KEY},
+            body: JSON.stringify({
+                phoneNumber,
+                amount,
+                accountReference: order.id,
+                transactionDesc: "RasOwuraku iPhone order"
+            })
         });
-        const result = await response.json();
-        if (!response.ok || !result.checkoutRequestId) throw new Error(result.message || result.error || "Could not start M-Pesa payment.");
-        alert(result.customerMessage || "Check your phone and enter your M-Pesa PIN to approve payment.");
-        for (let attempt = 0; attempt < 36; attempt++) {
-            await new Promise(resolve => setTimeout(resolve, 5000));
-            const statusResponse = await fetch(XDIGITEX_API_BASE + "/payments/status/" + encodeURIComponent(result.checkoutRequestId), {
-                headers: {"X-API-Key":XDIGITEX_API_KEY}
-            });
-            const statusResult = await statusResponse.json();
-            const status = String(statusResult.status || "").toLowerCase();
-            if (status === "completed") {
-                order.paymentStatus = "Paid via M-Pesa"; order.status = "Confirmed";
-                completeOrder(order); alert("M-Pesa payment confirmed. Your order has been received!"); return;
-            }
-            if (status === "failed" || status === "cancelled") throw new Error(statusResult.message || "M-Pesa payment was not completed.");
+
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.checkoutRequestId) {
+            throw new Error(result.message || result.error || "The payment prompt could not be started.");
         }
-        alert("Payment is still pending. Do not pay again. Contact the store with order reference: " + order.id);
+
+        setPaymentStatus("pending", "Prompt sent to your phone", result.customerMessage || "Check your phone. Enter your M-Pesa PIN only if the amount and business details are correct.", "Order " + order.id + " • Waiting for your approval", 10);
+
+        const maxAttempts = 36;
+        let lastConnectionIssue = "";
+        for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            setPaymentStatus(
+                "pending",
+                "Checking payment status…",
+                "Your payment is not confirmed yet. Approve the STK prompt on your phone, or wait for the next automatic check.",
+                "Check " + attempt + " of " + maxAttempts + " • Order " + order.id,
+                10 + (attempt / maxAttempts) * 85
+            );
+
+            try {
+                const statusResponse = await fetch(
+                    XDIGITEX_API_BASE + "/payments/status/" + encodeURIComponent(result.checkoutRequestId),
+                    {headers: {"X-API-Key":xdp_live_AnSoNLTkkmOXK7bR_efLb5Tb8yys6S-B}}
+                );
+                const statusResult = await statusResponse.json().catch(() => ({}));
+                if (!statusResponse.ok) {
+                    throw new Error(statusResult.message || statusResult.error || "Status service temporarily unavailable.");
+                }
+
+                const status = String(statusResult.status || "").toLowerCase();
+                lastConnectionIssue = "";
+
+                if (status === "completed") {
+                    order.paymentStatus = "Paid via M-Pesa";
+                    order.status = "Confirmed";
+                    setPaymentStatus("success", "Payment confirmed", "Your M-Pesa payment has been confirmed. Your order is now received.", "Order " + order.id, 100);
+                    completeOrder(order);
+                    alert("M-Pesa payment confirmed. Your order " + order.id + " has been received!");
+                    return;
+                }
+
+                if (status === "failed" || status === "cancelled") {
+                    setPaymentStatus("error", "Payment not completed", statusResult.message || "The M-Pesa request was " + status + ". You can try again or contact the store.", "Order " + order.id, 100);
+                    return;
+                }
+
+                setPaymentStatus(
+                    "pending",
+                    status === "processing" ? "M-Pesa is processing" : "Waiting for payment approval",
+                    "No payment confirmation has arrived yet. Please keep this page open and do not start another payment.",
+                    "Payment status: " + (status || "pending") + " • Check " + attempt + " of " + maxAttempts,
+                    10 + (attempt / maxAttempts) * 85
+                );
+            } catch (statusError) {
+                if (/payment was not completed|not completed/i.test(statusError.message)) throw statusError;
+                lastConnectionIssue = statusError.message || "Temporary connection issue";
+                setPaymentStatus(
+                    "pending",
+                    "Reconnecting to payment service",
+                    "We could not retrieve the latest status. Your payment may still be processing; we will automatically check again.",
+                    "Connection issue on check " + attempt + " of " + maxAttempts,
+                    10 + (attempt / maxAttempts) * 85
+                );
+            }
+        }
+
+        setPaymentStatus(
+            "pending",
+            "Payment still awaiting confirmation",
+            "We have not received a final result. Do not pay again yet. Contact the store and quote this order reference so the payment can be checked.",
+            "Order " + order.id + (lastConnectionIssue ? " • Last connection issue: " + lastConnectionIssue : ""),
+            100
+        );
     } catch (error) {
-        alert(error.message || "M-Pesa could not be completed. Please contact the store.");
+        setPaymentStatus("error", "Payment not confirmed", error.message || "M-Pesa could not be completed. Please contact the store.", "Order " + order.id, 100);
     } finally {
-        if (submitButton && document.body.contains(submitButton)) { submitButton.disabled = false; submitButton.textContent = "Place My Order →"; }
+        if (submitButton && document.body.contains(submitButton)) {
+            submitButton.disabled = false;
+            submitButton.textContent = "Place My Order →";
+        }
     }
 }
 
