@@ -903,7 +903,7 @@ Place My Order →
 </button>
 
 <p class="notice">
-M-Pesa STK Push becomes available after the secure payment Worker is deployed.
+Temporary direct Xdigitex connection. The API key is exposed in this public website; use only a restricted/test key.
 </p>
 
 </form>
@@ -942,8 +942,11 @@ target="_blank" rel="noopener">WhatsApp</a>
 // RASOWURAKU IPHONES STORE
 // ====================================
 
-// Set this to your deployed Cloudflare Worker URL. Never put the Xdigitex API key in public JavaScript.
-const MPESA_WORKER_URL = "https://YOUR-WORKER.workers.dev";
+// TEMPORARY DIRECT Xdigitex connection.
+// WARNING: A key placed here is public to every website visitor.
+// Paste a TEST/restricted key here first. Do not use a high-privilege live key.
+const XDIGITEX_API_KEY = "PASTE_YOUR_XDIGITEX_API_KEY_HERE";
+const XDIGITEX_API_BASE = "https://pay.xdigitex.com/api";
 
 
 // ====================================
@@ -1397,8 +1400,8 @@ Please confirm my order. Thank you!`;
 // ====================================
 
 async function payOnline(order) {
-    if (!MPESA_WORKER_URL.startsWith("https://") || MPESA_WORKER_URL.includes("YOUR-WORKER")) {
-        alert("M-Pesa is not connected yet. Please contact the store to complete your order.");
+    if (!XDIGITEX_API_KEY || XDIGITEX_API_KEY.includes("PASTE_YOUR")) {
+        alert("Add your Xdigitex API key in the payment settings before testing.");
         return;
     }
     const rawPhone = String(order.phone || "").replace(/[\\s()+-]/g, "");
@@ -1414,8 +1417,8 @@ async function payOnline(order) {
     const submitButton = document.querySelector("#checkoutForm button[type=submit]");
     if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Sending M-Pesa prompt…"; }
     try {
-        const response = await fetch(MPESA_WORKER_URL + "/payments/stkpush", {
-            method: "POST", headers: {"Content-Type":"application/json"},
+        const response = await fetch(XDIGITEX_API_BASE + "/payments/stkpush", {
+            method: "POST", headers: {"Content-Type":"application/json","X-API-Key":XDIGITEX_API_KEY},
             body: JSON.stringify({phoneNumber, amount, accountReference: order.id, transactionDesc: "RasOwuraku iPhone order"})
         });
         const result = await response.json();
@@ -1423,7 +1426,9 @@ async function payOnline(order) {
         alert(result.customerMessage || "Check your phone and enter your M-Pesa PIN to approve payment.");
         for (let attempt = 0; attempt < 36; attempt++) {
             await new Promise(resolve => setTimeout(resolve, 5000));
-            const statusResponse = await fetch(MPESA_WORKER_URL + "/payments/status?checkoutRequestId=" + encodeURIComponent(result.checkoutRequestId));
+            const statusResponse = await fetch(XDIGITEX_API_BASE + "/payments/status/" + encodeURIComponent(result.checkoutRequestId), {
+                headers: {"X-API-Key":XDIGITEX_API_KEY}
+            });
             const statusResult = await statusResponse.json();
             const status = String(statusResult.status || "").toLowerCase();
             if (status === "completed") {
