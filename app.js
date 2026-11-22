@@ -1,6 +1,6 @@
 
 const NUM='';
-const wa=t=>'https://wa.me/'+NUM+'?text='+encodeURIComponent(t);
+const wa=t=>'https://wa.me/?text='+encodeURIComponent(t);
 /* returns a harmless stand-in when an element is not on the current page */
 const $=s=>document.querySelector(s)||{addEventListener(){},style:{},selectedOptions:[],files:[]};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
