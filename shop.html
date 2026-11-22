@@ -1440,15 +1440,15 @@ function resetPaymentStatus() {
 }
 
 async function payOnline(order) {
-    if (!XDIGITEX_API_KEY || XDIGITEX_API_KEY.includes("xdp_live_AnSoNLTkkmOXK7bR_efLb5Tb8yys6S-B")) {
+    if (!XDIGITEX_API_KEY || XDIGITEX_API_KEY === "PASTE_YOUR_XDIGITEX_API_KEY_HERE") {
         alert("M-Pesa is not configured yet. Please contact the store.");
         return;
     }
 
-    const rawPhone = String(order.phone || "").replace(/[\\s()+-]/g, "");
+    const rawPhone = String(order.phone || "").replace(/[\s()+-]/g, "");
     const phoneNumber = rawPhone.startsWith("0") ? "254" + rawPhone.slice(1) :
                         rawPhone.startsWith("254") ? rawPhone : rawPhone;
-    if (!/^254[17]\\d{8}$/.test(phoneNumber)) {
+    if (!/^254[17]\d{8}$/.test(phoneNumber)) {
         alert("Enter a valid Kenyan Safaricom number, e.g. 07XXXXXXXX or 2547XXXXXXXX.");
         return;
     }
