@@ -10,7 +10,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<script src="https://js.paystack.co/v1/inline.js"></script>
+
 
 <style>
 :root {
@@ -706,7 +706,7 @@ phone or choose a flexible installment plan.
 
 <div class="hero-actions">
 <a href="#products" class="btn btn-gold">Explore iPhones →</a>
-<a href="https://wa.me/233241719370" class="btn btn-outline">Talk to Us</a>
+<a href="contact.html" class="btn btn-outline">Talk to Us</a>
 </div>
 </div>
 
@@ -823,7 +823,7 @@ placeholder="🔍 Search iPhone model...">
 
 <div class="cart-total">
 <span>Total</span>
-<span id="cartTotal">GH₵0.00</span>
+<span id="cartTotal">KSh0.00</span>
 </div>
 
 <button class="btn btn-gold" style="width:100%"
@@ -856,7 +856,7 @@ Proceed to Checkout →
 
 <div>
 <label>Phone number</label>
-<input class="field" name="phone" required type="tel" placeholder="+233...">
+<input class="field" name="phone" required type="tel" placeholder="07XXXXXXXX or 2547XXXXXXXX">
 </div>
 
 <div class="full">
@@ -867,7 +867,7 @@ Proceed to Checkout →
 <div class="full">
 <label>Delivery method</label>
 <div class="payment-choice">
-<label><input type="radio" name="delivery" value="Store Pickup" checked onchange="updateCheckout()"> Store pickup – Adum PZ, Pat Thomas Building, 2nd Floor</label>
+<label><input type="radio" name="delivery" value="Store Pickup" checked onchange="updateCheckout()"> Store pickup – Nairobi, Kenya</label>
 </div>
 <div class="payment-choice">
 <label><input type="radio" name="delivery" value="Home Delivery" onchange="updateCheckout()"> Home delivery</label>
@@ -885,7 +885,7 @@ Proceed to Checkout →
 <label><input type="radio" name="payment" value="whatsapp" checked> WhatsApp – arrange payment with us</label>
 </div>
 <div class="payment-choice">
-<label><input type="radio" name="payment" value="online"> Online payment – Paystack</label>
+<label><input type="radio" name="payment" value="online"> M-Pesa STK Push</label>
 </div>
 </div>
 
@@ -921,19 +921,19 @@ a secure server-side payment verification endpoint.
 
 <strong>RasOwuraku iPhones</strong><br>
 
-ADUM PZ, Pat Thomas Building, 2nd Floor<br>
+Nairobi, Kenya<br>
 
 Call / WhatsApp:
-<a href="tel:+233241719370">+233 241719370</a><br><br>
+<a href="contact.html">@vannyspark</a><br><br>
 
-<a href="https://wa.me/233241719370">Contact us on WhatsApp</a><br><br>
+<a href="contact.html">Contact us on WhatsApp</a><br><br>
 
 Your Dream iPhone, Our Priority.
 
 </div>
 </footer>
 
-<a class="fab" href="https://wa.me/233241719370"
+<a class="fab" href="contact.html"
 target="_blank" rel="noopener">WhatsApp</a>
 
 
@@ -943,7 +943,7 @@ target="_blank" rel="noopener">WhatsApp</a>
 // RASOWURAKU IPHONES STORE
 // ====================================
 
-const WHATSAPP = "233241719370";
+const WHATSAPP = "";
 
 
 // Add your Paystack public key here.
@@ -1030,7 +1030,7 @@ function saveData() {
 }
 
 function money(amount) {
-    return "GH₵" + Number(amount).toLocaleString("en-GH", {
+    return "KSh" + Number(amount).toLocaleString("en-KE", {
         minimumFractionDigits:2,
         maximumFractionDigits:2
     });
@@ -1405,81 +1405,49 @@ Please confirm my order. Thank you!`;
 // ====================================
 
 async function payOnline(order) {
-
-    if(!PAYSTACK_PUBLIC_KEY.startsWith("pk_") ||
-       PAYSTACK_PUBLIC_KEY.includes("REPLACE")) {
-        alert("Online payment is not configured yet. Please use WhatsApp checkout or contact the store.");
+    if (!MPESA_WORKER_URL.startsWith("https://") || MPESA_WORKER_URL.includes("YOUR-WORKER")) {
+        alert("M-Pesa is not connected yet. Please contact the store to complete your order.");
         return;
     }
-
-    if(!window.PaystackPop) {
-        alert("Payment service could not load. Please try again.");
+    const rawPhone = String(order.phone || "").replace(/[\\s()+-]/g, "");
+    const phoneNumber = rawPhone.startsWith("0") ? "254" + rawPhone.slice(1) :
+                        rawPhone.startsWith("254") ? rawPhone : rawPhone;
+    if (!/^254[17]\\d{8}$/.test(phoneNumber)) {
+        alert("Enter a valid Kenyan Safaricom number, e.g. 07XXXXXXXX or 2547XXXXXXXX.");
         return;
     }
+    const amount = Math.round(Number(order.total));
+    if (!Number.isFinite(amount) || amount < 1) { alert("The order amount is invalid."); return; }
 
-    const handler=PaystackPop.setup({
-
-        key:PAYSTACK_PUBLIC_KEY,
-
-        email:order.email,
-
-        amount:Math.round(order.total*100),
-
-        currency:"GHS",
-
-        ref:order.id,
-
-        metadata:{
-            order_id:order.id,
-            customer_name:order.name,
-            phone:order.phone
-        },
-
-        callback:async function(response) {
-
-            try {
-
-                const result=await fetch(VERIFY_PAYMENT_ENDPOINT,{
-                    method:"POST",
-                    headers:{"Content-Type":"application/json"},
-                    body:JSON.stringify({
-                        reference:response.reference,
-                        order_id:order.id
-                    })
-                });
-
-                const verified=await result.json();
-
-                if(!result.ok || verified.status!=="success") {
-                    alert("Payment is awaiting verification. Contact the store with reference: "+response.reference);
-                    return;
-                }
-
-                order.paymentStatus="Paid";
-                order.status="Confirmed";
-
-                completeOrder(order);
-
-                alert("Payment verified. Your order has been received!");
-
-            } catch(error) {
-                alert("Payment verification is unavailable. Keep your payment reference: "+response.reference);
+    const submitButton = document.querySelector("#checkoutForm button[type=submit]");
+    if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Sending M-Pesa prompt…"; }
+    try {
+        const response = await fetch(MPESA_WORKER_URL + "/payments/stkpush", {
+            method: "POST", headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({phoneNumber, amount, accountReference: order.id, transactionDesc: "RasOwuraku iPhone order"})
+        });
+        const result = await response.json();
+        if (!response.ok || !result.checkoutRequestId) throw new Error(result.message || result.error || "Could not start M-Pesa payment.");
+        alert(result.customerMessage || "Check your phone and enter your M-Pesa PIN to approve payment.");
+        for (let attempt = 0; attempt < 36; attempt++) {
+            await new Promise(resolve => setTimeout(resolve, 5000));
+            const statusResponse = await fetch(MPESA_WORKER_URL + "/payments/status?checkoutRequestId=" + encodeURIComponent(result.checkoutRequestId));
+            const statusResult = await statusResponse.json();
+            const status = String(statusResult.status || "").toLowerCase();
+            if (status === "completed") {
+                order.paymentStatus = "Paid via M-Pesa"; order.status = "Confirmed";
+                completeOrder(order); alert("M-Pesa payment confirmed. Your order has been received!"); return;
             }
-        },
-
-        onClose:function() {
-            alert("Payment window closed. Your order has not been confirmed.");
+            if (status === "failed" || status === "cancelled") throw new Error(statusResult.message || "M-Pesa payment was not completed.");
         }
-
-    });
-
-    handler.openIframe();
+        alert("Payment is still pending. Do not pay again. Contact the store with order reference: " + order.id);
+    } catch (error) {
+        alert(error.message || "M-Pesa could not be completed. Please contact the store.");
+    } finally {
+        if (submitButton && document.body.contains(submitButton)) { submitButton.disabled = false; submitButton.textContent = "Place My Order →"; }
+    }
 }
 
-
-// ====================================
-// SAVE COMPLETED ORDER
-// ====================================
 
 function completeOrder(order) {
 
